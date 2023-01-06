@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "std:destructionLevel",
+  "title": "Standart Destruction Level",
+  "description": "This extension is used to describe the degree of deletion. Five different levels of deletion are offered.",
+  "$comment": "The Interpreter must check if it supports the methods in the destructionLevel enumeration.",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "required": ["destructionLevel"],
+  "properties": {
+    "destructionLevel": {
+      "type": "string",
+      "enum": [
+        "recycled",
+        "deleted",
+        "metadata destroyed",
+        "wiped",
+        "physically destroyed"
+      ]
+    }
+  }
+}

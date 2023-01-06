@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "std:fromPointInTime",
+  "title": "Standard From Point In Time",
+  "description": "This extension is used when you want to delete data only from a certain point of time.",
+  "$comment": "The Interpreter must be able to get the current time and compare it with the given one in payload.",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "required": ["from"],
+  "properties": {
+    "from": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Point in time at which the deletion starts.",
+      "examples": ["2022-12-01T00:00:00.000Z"]
+    }
+  }
+}
