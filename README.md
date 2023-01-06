@@ -2,8 +2,13 @@
 
 <h2 align="center">Modelling the End of the Data Lifecycle</h2>
 
-![GitLab Release (latest by SemVer)](https://img.shields.io/gitlab/v/release/DaTebe/destroyclaim-js?style=flat-square)
-![node-current](https://img.shields.io/node/v/DaTebe/destroyclaim-js?style=flat-square)
+![GitLab Release (latest by SemVer)](https://img.shields.io/gitlab/v/release/DaTebe/destroyclaims?style=flat-square)
+![node-current](https://img.shields.io/badge/dynamic/json?style=flat-square&logo=Node.js&label=node&query=engines.node&url=https%3A%2F%2Fraw.githubusercontent.com%2FDaTebe%2Fdestroyclaims%2Fmain%2Fpackage.json)
+![open issues](https://img.shields.io/github/issues/DaTebe/destroyclaims?style=flat-square)
+![license](https://img.shields.io/github/license/DaTebe/destroyclaims?style=flat-square)
+![code-size](https://img.shields.io/github/languages/code-size/DaTebe/destroyclaims?style=flat-square)
+![last-commit](https://img.shields.io/github/last-commit/DaTebe/destroyclaims?style=flat-square)
+![codecoverage](https://img.shields.io/badge/coverage-100%25-green?style=flat-square)
 
 ## 🚀 Introduction
 
