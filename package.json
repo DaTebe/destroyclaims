@@ -21,7 +21,7 @@
 		"url": "https://https://github.com/DaTebe/destroyclaim-js/issues"
 	},
 	"engines": {
-		"node": ">=14.0.0"
+		"node": ">=16.18.0"
 	},
 	"scripts": {
 		"start": "node src/index.js",
