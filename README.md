@@ -17,8 +17,8 @@ While a lot of work has been done in the field of selecting, using and transform
 This repository is intended to contribute in closing one of the fundamental gaps concerning the end of the data life cycle.
 
 The main contribution is a specification for modeling the end of the data lifecycle.
-With the so-called Destroy Claims (written in JSON), it is possible to plan the end of the data lifecycle in advance.
-It allows to model what, when, where, how, why and by whom data should be deleted.
+With the so-called `Destroy Claims` (written in JSON), it is possible to plan the end of the data lifecycle in advance.
+It allows to model _what_, _when_, _where_, _how_, _why_ and by _whom_ data should be deleted.
 The model is designed around an extension system, which allows to represent and add any use cases, even future ones.
 Also, it can be used to automate the deletion of data in heterogeneous, distributed systems by providing a unified understanding.
 For this purpose, Destroy Claim Agents (DCA) are used.
