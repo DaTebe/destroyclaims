@@ -16,16 +16,17 @@ Data is one of the most important assets in the 21th century.
 While a lot of work has been done in the field of selecting, using and transforming data for our needs, little to no work has been done when it comes to the deletion of data.
 This repository is intended to contribute in closing one of the fundamental gaps concerning the end of the data life cycle.
 
-The main contribution is a specification for modeling the end of the data lifecycle.
+The main contribution is a [specification](docs/destroy-claim.md) for modeling the end of the data lifecycle.
 With the so-called `Destroy Claims` (written in JSON), it is possible to plan the end of the data lifecycle in advance.
 It allows to model _what_, _when_, _where_, _how_, _why_ and by _whom_ data should be deleted.
 The model is designed around an extension system, which allows to represent and add any use cases, even future ones.
-Also, it can be used to automate the deletion of data in heterogeneous, distributed systems by providing a unified understanding.
+A number of [standardized extensions](/docs/std-extensions.md) are available to start with.
+Also, Destroy Claims can be used to automate the deletion of data in heterogeneous, distributed systems by providing a unified understanding.
 For this purpose, Destroy Claim Agents (DCA) are used.
 DCAs are connected to the environment in which the data to be deleted are located.
 They evaluate Destroy Claims and execute the deletion of data in the environment.
 DCAs can be developed for different purposes and technologies such as databases, file systems or web APIs.
-To simplify the implementation of a DCA, a JavaScript library that can be used to easily bootstrap new DCAs is provided.
+To simplify the implementation of a DCA, a JavaScript library that can be used to easily bootstrap new DCAs is [provided](docs/destroyclaim-js.md).
 The DCAs generated using the library already adhere to the Destroy Claim Model Specification.
 
 ## 📑 Documentation
