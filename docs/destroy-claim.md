@@ -463,7 +463,7 @@ If mode is not supported by the DCA, stop evaluation.
 If mode is not supported by the DCA, stop evaluation.
 5. Check if the Destroy Claim is to be executed in notification mode or silent mode.
 If mode is not supported by the DCA, stop evaluation.
-6. If `strictMode` is `true`, the agent MUST test all points stated in strict mode before moving on.
+6. If `strictMode` is `true`, the agent MUST test all points stated in [strict mode](#normal-mode-and-strict-mode) before moving on.
 7. If any of the `conditions` fields contains the `id` of the element it belongs to, stop evaluation.
 8. Check all `conditions` fields for cyclic dependencies. If you find a deadlock, stop evaluation.
 
