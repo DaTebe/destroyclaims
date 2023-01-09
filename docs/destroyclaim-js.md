@@ -50,7 +50,7 @@ Currently there is no npm release.
 Please clone this repository.
 
 ```text
-npm i https://github.com/DaTebe/destroyclaim-js
+npm i https://github.com/DaTebe/destroyclaims
 ```
 
 ## Create your first DCA
