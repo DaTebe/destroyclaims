@@ -1,4 +1,4 @@
-# Destroy Claim Specification
+# Destroy Claim Model 1.0.0 Specification
 
 [back to homepage](../README.md)
 
