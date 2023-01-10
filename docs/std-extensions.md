@@ -1,4 +1,4 @@
-# Standard Extensions Library
+# Standard Extensions
 
 ## Table of Content
 

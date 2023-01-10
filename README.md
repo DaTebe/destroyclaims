@@ -9,6 +9,8 @@
 ![code-size](https://img.shields.io/github/languages/code-size/DaTebe/destroyclaims?style=flat-square)
 ![last-commit](https://img.shields.io/github/last-commit/DaTebe/destroyclaims?style=flat-square)
 ![codecoverage](https://img.shields.io/badge/coverage-100%25-green?style=flat-square)
+[![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/datebe/destroyclaims?style=flat-square)](https://snyk.io/test/github/datebe/destroyclaims)
+
 
 ## 🚀 Introduction
 
