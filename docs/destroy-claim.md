@@ -996,6 +996,7 @@ In this case, the data is simply deleted without further measures.
         ],
       },
       "action": "d815f135-8723-407b-9549-aae65dae9ae8",
+    }
   ],
   "destroyConditions": [
     {
