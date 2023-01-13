@@ -103,13 +103,13 @@ support.addDestroyActionExtension(
   }
 );
 support.addPreAllEvaluationHook((destroyclaim) => {
-  destroyclaim.setState("test", "banana");
+  destroyclaim.setState("test", "state");
   console.log(
     `before all evaluation hook of destroy claim ${
-      destroyclaim.getDestroyClaimOriginalJSON().id
+      destroyclaim.getDestroyClaimJSON().id
     }`
   );
-  console.log(`state = ${JSON.stringify(destroyclaim.getState())}`);
+  console.log(`state = ${JSON.stringify(destroyclaim.getState("test"))}`);
 });
 support.addPostAllEvaluationHook(() => {
   console.log("after all evalúation hook");
@@ -226,7 +226,7 @@ const testFiles = [
 
   const dc = new DestroyClaim(exampleDestroyClaim, support.getSupportObject());
   try {
-    if (isManualMode(dc.getDestroyClaimOriginalJSON())) {
+    if (isManualMode(dc.getDestroyClaimJSON())) {
       // eslint-disable-next-line global-require
       const readline = require("readline");
       const rl = readline.createInterface({
