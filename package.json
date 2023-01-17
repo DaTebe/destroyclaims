@@ -2,7 +2,7 @@
 	"name": "@datebe/destroyclaim-js",
 	"displayName": "Destroy Claim JS",
 	"description": "",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"main": "dist/functions/module.js",
 	"publishConfig": {
 		"access": "public"

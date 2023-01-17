@@ -2,13 +2,15 @@
 
 <h2 align="center">Modelling the End of the Data Lifecycle</h2>
 
-![version](https://img.shields.io/badge/dynamic/json?style=flat-square&label=version&query=version&url=https%3A%2F%2Fraw.githubusercontent.com%2FDaTebe%2Fdestroyclaims%2Fmain%2Fpackage.json)
+![model version](https://img.shields.io/badge/model%20version-1.0.0-green?style=flat-square)
+![dca version](https://img.shields.io/badge/dynamic/json?style=flat-square&label=DCA%20version&query=version&url=https%3A%2F%2Fraw.githubusercontent.com%2FDaTebe%2Fdestroyclaims%2Fmain%2Fpackage.json)
 ![node-current](https://img.shields.io/badge/dynamic/json?style=flat-square&logo=Node.js&label=node&query=engines.node&url=https%3A%2F%2Fraw.githubusercontent.com%2FDaTebe%2Fdestroyclaims%2Fmain%2Fpackage.json)
 ![open issues](https://img.shields.io/github/issues/DaTebe/destroyclaims?style=flat-square)
 ![license](https://img.shields.io/github/license/DaTebe/destroyclaims?style=flat-square)
 ![code-size](https://img.shields.io/github/languages/code-size/DaTebe/destroyclaims?style=flat-square)
 ![last-commit](https://img.shields.io/github/last-commit/DaTebe/destroyclaims?style=flat-square)
 ![codecoverage](https://img.shields.io/badge/coverage-100%25-green?style=flat-square)
+[![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/datebe/destroyclaims?style=flat-square)](https://snyk.io/test/github/datebe/destroyclaims)
 
 ## 🚀 Introduction
 
