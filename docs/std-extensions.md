@@ -7,6 +7,7 @@
 + [Extensions](#extensions)
   + [std:agent](#stdagent)
   + [std:sha256](#stdsha256)
+  + [std:uuidv4](#stduuidv4)
   + [std:destructionLevel](#stddestructionlevel)
   + [std:fromPointInTime](#stdfrompointintime)
   + [std:toPointInTime](#stdtopointintime)
@@ -57,14 +58,27 @@ Furthermore, the extension can be used in conditions to model executors.
 
 > 🛎️ This is a `destroySubjects` extension
 
-This extension can be used to address data based on its content. The SHA256 hash method is used for this purpose.
+This extension can be used to address data based on its content.
+The SHA256 hash method is used for this purpose.
 It offers a sufficiently low collision rate to address data unambiguously on the basis of its content.
 In general, this extension can be used for all types of data.
 Especially file-based data are to be mentioned here.
 
 |field name|required|description|type|example|
 |---|---|---|---|---|
-|`hash`|MUST|SHA256 hash of the data content.|`String`|`0dade23a4a9b8ac7cfb3...`|
+|`hash`|MUST|UUIDv4|`String`|`0dade23a4a9b8ac7cfb3...`|
+
+### `std:uuidv4`
+
+> 🛎️ This is a `destroySubjects` extension
+
+This extension can be used to address data based on a uuid.
+In data management systems, unique IDs are often used to identify data sets.
+If this is done with UUIDv4, this extension can be used to address the data.
+
+|field name|required|description|type|example|
+|---|---|---|---|---|
+|`uuid`|MUST|UUIDv4|`String`|`9e51ecff-71b3-449a-b7f9-1f1b54a6e844`|
 
 ### `std:destructionLevel`
 
