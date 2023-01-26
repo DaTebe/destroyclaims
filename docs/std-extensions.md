@@ -126,32 +126,18 @@ This extension is used when you want to delete data only until a certain point i
 |---|---|---|---|---|
 |`to`|MUST|Point in time from which the data should no longer be deleted. MUST be [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html).|`<ISO8601>String`|`2022-12-01T00:00:00.000Z`|
 
-### `std:inTimeInterval`
+### `std:dcaProperty`
 
 > 🛎️ This is a `destroyConditions` extension
 
-With this extension time intervals can be modeled.
-This allows to specify a time window in which the data must be deleted.
-The DCA does not have to delete the data immediately.
-If there is still time in the window, the DCA can postpone the deletion to a later time.
-This can be useful if the DCA wants to perform the deletion with less expensive resources (e.g. unused Cloud CPU cycles).
-
-|field name|required|description|type|example|
-|---|---|---|---|---|
-|`from`|MUST|Time at which the interval starts. MUST be [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html).|`<ISO8601>String`|`2022-12-01T00:00:00.000Z`|
-|`to`|MUST|Time at which the interval stops. MUST be [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html).|`<ISO8601>String`|`2023-01-01T00:00:00.000Z`|
-
-### `std:dcaHasProperty`
-
-> 🛎️ This is a `destroyConditions` extension
-
-This extension aims to allow data to be deleted if the DCA has certain properties.
-The properties are generically encoded as strings.
+This extension aims to allow data to be deleted if the DCA has or has not a certain property.
+The property is generically encoded as string.
 So you can give a DCA for example the property that it is part of a department or other kind of group.
 
 |field name|required|description|type|example|
 |---|---|---|---|---|
 |`property`|MUST|In this field a property is coded as a string.|`String`|`departmentA`|
+|`has`|MUST|Specifies whether the DCA must or must not have the property.|`Boolean`|`true`|
 
 > ⚠️ This extension has potential to produce unexpected behavior.
 > The extension depends on self-selected and coded properties.
