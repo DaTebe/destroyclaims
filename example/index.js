@@ -57,7 +57,12 @@ support.addDestroySubjectExtension(
   }
 );
 support.addDestroyContactExtension("std:agent", stdAgentSchema, {
-  evaluation: () => true,
+  evaluation: (contact, destroyclaim) => {
+    console.log(
+      `Can access current destroyclaim using last parameter. ${destroyclaim.getId()}`
+    );
+    return true;
+  },
 });
 support.addDestroyConditionExtension(
   "std:fromPointInTime",

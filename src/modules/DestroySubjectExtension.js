@@ -1,5 +1,4 @@
 /* eslint-disable class-methods-use-this */
-const { Type } = require("ajv/dist/compile/util");
 const _ = require("lodash");
 const Extension = require("./Extension");
 
@@ -96,30 +95,34 @@ class DestroySubjectExtension extends Extension {
 
   /**
    * start processing destroy subject in real mode
+   * @param {Object} destroyclaim Destroyclaim object this subject is part of
    * @returns {*} return type depends on the injected realModeCallback.
    */
-  async processRealMode() {
+  async processRealMode(destroyclaim) {
     if (_.isUndefined(this.#realModeCallback)) {
       throw new TypeError(
         "DestroySubjectExtension: realMode function was not set on construction"
       );
     }
-    await this.#preProcess(this);
-    await this.#realModeCallback(this);
-    await this.#postProcess(this);
+    await this.#preProcess(this, destroyclaim);
+    await this.#realModeCallback(this, destroyclaim);
+    await this.#postProcess(this, destroyclaim);
   }
 
   /**
    * start processing destroy subject in simulation mode
+   * @param {Object} destroyclaim Destroyclaim object this subject is part of
    * @returns {*} return type depends on the injected simulationModeCallback.
    */
-  async processSimulationMode() {
+  async processSimulationMode(destroyclaim) {
     if (_.isUndefined(this.#simulationModeCallback)) {
       throw new TypeError(
         "DestroySubjectExtension: simulationMode function was not set on construction"
       );
     }
-    await this.#simulationModeCallback(this);
+    await this.#preProcess(this, destroyclaim);
+    await this.#simulationModeCallback(this, destroyclaim);
+    await this.#postProcess(this, destroyclaim);
   }
 }
 

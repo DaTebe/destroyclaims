@@ -84,30 +84,36 @@ class DestroyActionExtension extends Extension {
 
   /**
    * start processing destroy action and corresponding destroy subject in real mode
+   * @param {Object} subject destroy subject that refers to this action
+   * @param {Object} destroyclaim Destroyclaim object this subject is part of
    * @returns {*} return type depends on the injected realModeCallback.
    */
-  async processRealMode(subject) {
+  async processRealMode(subject, destroyclaim) {
     if (_.isUndefined(this.#realModeCallback)) {
       throw new TypeError(
         "DestroyActionExtension: realMode function was not set on construction"
       );
     }
-    await this.#preProcess(this);
+    await this.#preProcess(this, destroyclaim);
     await this.#realModeCallback(this, subject);
-    await this.#postProcess(this);
+    await this.#postProcess(this, destroyclaim);
   }
 
   /**
    * start processing destroy action and corresponding destroy subject in simulation mode
+   * @param {Object} subject destroy subject that refers to this action
+   * @param {Object} destroyclaim Destroyclaim object this subject is part of
    * @returns {*} return type depends on the injected simulationModeCallback.
    */
-  async processSimulationMode(subject) {
+  async processSimulationMode(subject, destroyclaim) {
     if (_.isUndefined(this.#simulationModeCallback)) {
       throw new TypeError(
         "DestroyActionExtension: simulationMode function was not set on construction"
       );
     }
+    await this.#preProcess(this, destroyclaim);
     await this.#simulationModeCallback(this, subject);
+    await this.#postProcess(this, destroyclaim);
   }
 }
 

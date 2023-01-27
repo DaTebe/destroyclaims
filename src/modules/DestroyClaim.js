@@ -179,7 +179,7 @@ class DestroyClaim {
     const evaluateSubjects = this.#destroySubjects.map(async (subject) => ({
       id: subject.getId(),
       evaluation:
-        (await subject.evaluate()) &&
+        (await subject.evaluate(this)) &&
         subject.getName() in this.#support.extensions, // second check is for normal mode, need to check if extension is supported
     }));
 
@@ -201,7 +201,7 @@ class DestroyClaim {
     const evaluateContacts = this.#destroyContacts.map(async (contact) => ({
       id: contact.getId(),
       evaluation:
-        (await contact.evaluate()) &&
+        (await contact.evaluate(this)) &&
         contact.getName() in this.#support.extensions,
     }));
 
@@ -224,7 +224,7 @@ class DestroyClaim {
       async (condition) => ({
         id: condition.getId(),
         evaluation:
-          (await condition.evaluate()) &&
+          (await condition.evaluate(this)) &&
           condition.getName() in this.#support.extensions,
       })
     );
@@ -247,7 +247,7 @@ class DestroyClaim {
     const evaluateActions = this.#destroyActions.map(async (action) => ({
       id: action.getId(),
       evaluation:
-        (await action.evaluate()) &&
+        (await action.evaluate(this)) &&
         action.getName() in this.#support.extensions,
     }));
 
@@ -590,17 +590,17 @@ class DestroyClaim {
       ) {
         if (_.isNull(subject.getAction())) {
           if (!isSimulationMode(this.#destroyclaimOriginal)) {
-            return subject.processRealMode();
+            return subject.processRealMode(this);
           }
-          return subject.processSimulationMode();
+          return subject.processSimulationMode(this);
         }
         const action = this.#destroyActions.find(
           (o) => o.getId() === subject.getAction()
         );
         if (!isSimulationMode(this.#destroyclaimOriginal)) {
-          return action.processRealMode(subject);
+          return action.processRealMode(subject, this);
         }
-        return action.processSimulationMode(subject);
+        return action.processSimulationMode(subject, this);
       }
       return Promise.resolve(true);
     });

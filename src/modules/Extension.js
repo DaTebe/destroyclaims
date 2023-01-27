@@ -193,12 +193,13 @@ class Extension {
 
   /**
    * evaluate the extension
+   * @param {Object} destroyclaim Destroyclaim object this extension is part of
    * @returns {Boolean} returns if evaluation was positive (true) or negative (false)
    */
-  async evaluate() {
-    await this.#preEvaluation(this);
-    this.#evaluationResult = await this.#evaluation(this);
-    await this.#postEvaluation(this);
+  async evaluate(destroyclaim) {
+    await this.#preEvaluation(this, destroyclaim);
+    this.#evaluationResult = await this.#evaluation(this, destroyclaim);
+    await this.#postEvaluation(this, destroyclaim);
     return this.#evaluationResult;
   }
 }
