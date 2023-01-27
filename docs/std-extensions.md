@@ -7,6 +7,7 @@
 + [Extensions](#extensions)
   + [std:agent](#stdagent)
   + [std:sha256](#stdsha256)
+  + [std:uuidv4](#stduuidv4)
   + [std:destructionLevel](#stddestructionlevel)
   + [std:fromPointInTime](#stdfrompointintime)
   + [std:toPointInTime](#stdtopointintime)
@@ -57,14 +58,27 @@ Furthermore, the extension can be used in conditions to model executors.
 
 > 🛎️ This is a `destroySubjects` extension
 
-This extension can be used to address data based on its content. The SHA256 hash method is used for this purpose.
+This extension can be used to address data based on its content.
+The SHA256 hash method is used for this purpose.
 It offers a sufficiently low collision rate to address data unambiguously on the basis of its content.
 In general, this extension can be used for all types of data.
 Especially file-based data are to be mentioned here.
 
 |field name|required|description|type|example|
 |---|---|---|---|---|
-|`hash`|MUST|SHA256 hash of the data content.|`String`|`0dade23a4a9b8ac7cfb3...`|
+|`hash`|MUST|UUIDv4|`String`|`0dade23a4a9b8ac7cfb3...`|
+
+### `std:uuidv4`
+
+> 🛎️ This is a `destroySubjects` extension
+
+This extension can be used to address data based on a uuid.
+In data management systems, unique IDs are often used to identify data sets.
+If this is done with UUIDv4, this extension can be used to address the data.
+
+|field name|required|description|type|example|
+|---|---|---|---|---|
+|`uuid`|MUST|UUIDv4|`String`|`9e51ecff-71b3-449a-b7f9-1f1b54a6e844`|
 
 ### `std:destructionLevel`
 
@@ -112,32 +126,18 @@ This extension is used when you want to delete data only until a certain point i
 |---|---|---|---|---|
 |`to`|MUST|Point in time from which the data should no longer be deleted. MUST be [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html).|`<ISO8601>String`|`2022-12-01T00:00:00.000Z`|
 
-### `std:inTimeInterval`
+### `std:dcaProperty`
 
 > 🛎️ This is a `destroyConditions` extension
 
-With this extension time intervals can be modeled.
-This allows to specify a time window in which the data must be deleted.
-The DCA does not have to delete the data immediately.
-If there is still time in the window, the DCA can postpone the deletion to a later time.
-This can be useful if the DCA wants to perform the deletion with less expensive resources (e.g. unused Cloud CPU cycles).
-
-|field name|required|description|type|example|
-|---|---|---|---|---|
-|`from`|MUST|Time at which the interval starts. MUST be [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html).|`<ISO8601>String`|`2022-12-01T00:00:00.000Z`|
-|`to`|MUST|Time at which the interval stops. MUST be [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html).|`<ISO8601>String`|`2023-01-01T00:00:00.000Z`|
-
-### `std:dcaHasProperty`
-
-> 🛎️ This is a `destroyConditions` extension
-
-This extension aims to allow data to be deleted if the DCA has certain properties.
-The properties are generically encoded as strings.
+This extension aims to allow data to be deleted if the DCA has or has not a certain property.
+The property is generically encoded as string.
 So you can give a DCA for example the property that it is part of a department or other kind of group.
 
 |field name|required|description|type|example|
 |---|---|---|---|---|
 |`property`|MUST|In this field a property is coded as a string.|`String`|`departmentA`|
+|`has`|MUST|Specifies whether the DCA must or must not have the property.|`Boolean`|`true`|
 
 > ⚠️ This extension has potential to produce unexpected behavior.
 > The extension depends on self-selected and coded properties.
