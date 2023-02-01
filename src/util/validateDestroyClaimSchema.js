@@ -1,18 +1,8 @@
 const Ajv20 = require("ajv/dist/2020");
 const addFormats = require("ajv-formats");
-const path = require("path");
-const fs = require("fs");
 const { SchemaValidationError } = require("./errors");
 const { isStrictMode } = require("./dcTools");
-
-// eslint-disable-next-line no-undef
-const pathToSchema = path.join(
-  process.cwd(),
-  "schema",
-  "destroyclaim-schema.json"
-);
-
-const loadFile = (uri) => JSON.parse(fs.readFileSync(uri, "utf8"));
+const schema = require("../../schema/destroyclaim-schema.json");
 
 /**
  * Checks, if the destroy claim has a proper schema
@@ -23,7 +13,7 @@ const loadFile = (uri) => JSON.parse(fs.readFileSync(uri, "utf8"));
 const validateCore = (destroyclaim) => {
   const ajv = new Ajv20({ strict: false, allErrors: true });
   addFormats(ajv);
-  const dcSchema = loadFile(pathToSchema);
+  const dcSchema = JSON.parse(JSON.stringify(schema));
   if (isStrictMode(destroyclaim)) {
     dcSchema.unevaluatedProperties = false;
     dcSchema.required.push("modelVersion");
