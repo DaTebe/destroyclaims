@@ -1,5 +1,7 @@
 # Standard Extensions
 
+[back to homepage](../README.md)
+
 ## Table of Content
 
 + [Introduction](#introduction)
@@ -35,7 +37,7 @@ This section describes the extensions provided by the standard library.
 
 > 🛎️ This is a `destroyContacts` and `destroyConditions` extension
 
-> 🧬 v1.0.0
+> 🧬 Compatibility [ `v1.0.0` ]
 
 This extension describes a natural or legal person.
 It can be used to model a contact for the Destroy Claim itself or any other part of it.
@@ -59,7 +61,7 @@ There, the extension can be used to model that data should only be deleted by ce
 
 > 🛎️ This is a `destroySubjects` extension
 
-> 🧬 v1.0.0
+> 🧬 Compatibility [ `v1.0.0` ]
 
 This extension can be used to address data based on its content.
 The SHA256 hash method is used for this purpose.
@@ -77,7 +79,7 @@ Especially file-based data are to be mentioned here.
 
 > 🛎️ This is a `destroySubjects` extension
 
-> 🧬 v1.0.0
+> 🧬 Compatibility [ `v1.0.0` ]
 
 This extension can be used to address data based on a UUID.
 In data management systems, universal unique IDs are often used to identify data sets.
@@ -92,7 +94,7 @@ If this is done with UUIDv4, this extension can be used to address data.
 
 > 🛎️ This is a `destroyActions` extension
 
-> 🧬 v1.0.0
+> 🧬 Compatibility [ `v1.0.0` ]
 
 This extension is used to describe the degree of technical deletion of the data under consideration.
 Five different levels of deletion are offered.
@@ -125,7 +127,7 @@ Usually, a DCA will not be able to perform this level.
 
 > 🛎️ This is a `destroyConditions` extension
 
-> 🧬 v1.0.0
+> 🧬 Compatibility [ `v1.0.0` ]
 
 This extension is used when you want to delete data from a certain point of time.  
 
@@ -137,7 +139,7 @@ This extension is used when you want to delete data from a certain point of time
 
 > 🛎️ This is a `destroyConditions` extension
 
-> 🧬 v1.0.0
+> 🧬 Compatibility [ `v1.0.0` ]
 
 This extension is used when you want to delete data until a certain point in time.
 
@@ -149,7 +151,7 @@ This extension is used when you want to delete data until a certain point in tim
 
 > 🛎️ This is a `destroyConditions` extension
 
-> 🧬 v1.0.0
+> 🧬 Compatibility [ `v1.0.0` ]
 
 This extension aims to allow data to be deleted if the DCA has or has not a certain property.
 The property is generically encoded as string.
@@ -170,7 +172,7 @@ For example, a DCA can be given the property that it is part of a department or 
 
 > 🛎️ This is a `destroyConditions` extension
 
-> 🧬 v1.0.0
+> 🧬 Compatibility [ `v1.0.0` ]
 
 This extension allows to model if data should be deleted inside or outside to a country.
 The extension here refers to the physical location of the data.
@@ -182,14 +184,14 @@ It can be specified whether the data should be deleted inside or outside the cou
 |`code`|MUST|Alpha3 code of a country. According to [ISO-3166-1](https://www.iso.org/iso-3166-country-codes.html).|`<alpha3>String`|`JPN`|
 |`scope`|MUST|Specify whether to delete inside or outside the country. Enumeration: `inside`, `outside`|`String`|`inside`|
 
-> ⚠️ There may be special cases where parts of the data are in different countries.
+> 💡 There may be special cases where parts of the data are in different countries.
 > You MUST use the extension several times to cover all possible countries where data fragments may be present.
 
 ### `std:geoLocation`
 
 > 🛎️ This is a `destroyConditions` extension
 
-> 🧬 v1.0.0
+> 🧬 Compatibility [ `v1.0.0` ]
 
 This extension models the physical position of the data using geometric figures on a world map.
 [GeoJSON](https://geojson.org/) is used for this purpose.
