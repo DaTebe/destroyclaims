@@ -73,7 +73,7 @@ Especially file-based data are to be mentioned here.
 
 |field name|required|description|type|example|
 |---|---|---|---|---|
-|`hash`|MUST|UUIDv4|`String`|`0dade23a4a9b8ac7cfb3...`|
+|`hash`|MUST|SHA256 hash of the data content.|`String`|`0dade23a4a9b8ac7cfb3...`|
 
 ### `std:uuidv4`
 
