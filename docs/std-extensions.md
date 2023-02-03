@@ -3,7 +3,6 @@
 ## Table of Content
 
 + [Introduction](#introduction)
-+ [Compatibility](#compatibility)
 + [Extensions](#extensions)
   + [std:agent](#stdagent)
   + [std:sha256](#stdsha256)
@@ -18,22 +17,15 @@
 
 ## Introduction
 
-In order to be able to use the destroy claims in a meaningful way, it is necessary that at least a certain amount of extensions is standardized.
-Standardization allows destroy claims to be exchanged and understood across systems and companies.
-For this reason, the destroy claim specification offers a number of standard extensions.
-The extensions are largely independent of the destroy claim specification.
+In order to be able to use Destroy Claims in a meaningful way, it is necessary that at least a certain amount of extensions is standardized.
+Standardization allows Destroy Claims to be exchanged and understood across systems and companies.
+For this reason, the Destroy Claim Model Specification offers a number of standard extensions.
+The extensions are largely independent of the Destroy Claim Model Specification.
 Therefore, the standard library can continue to grow independently.
-Changes to the way extensions are represented in destroy claims will of course effect these.
-For this reason, the standard library is also versioned so that a compatibility assignment can take place in the course of its development.
+Changes to the way extensions are represented in Destroy Claims will of course effect these.
+The standard library is also versioned so that a compatibility assignment can take place in the course of its development.
 The standard library primarily tries to design extensions as simple and universal as possible. 
 For this reason, as of today, no extensions are included that are designed for specific technologies.
-
-## Compatibility
-
-Currently the specification and the extensions are in the phase of a first release.
-For this reason, there is full compatebility.
-To ensure compatibility with other extensions, the standard library claimes the name prefix `std`.
-A standard extension thus could be `std:agent`.
 
 ## Extensions
 
@@ -43,9 +35,18 @@ This section describes the extensions provided by the standard library.
 
 > 🛎️ This is a `destroyContacts` and `destroyConditions` extension
 
+> 🧬 v1.0.0
+
 This extension describes a natural or legal person.
-The extension can be used to model contacts.
-Furthermore, the extension can be used in conditions to model executors.
+It can be used to model a contact for the Destroy Claim itself or any other part of it.
+Furthermore, the extension can be used in Destroy Conditions.
+There, the extension can be used to model that data should only be deleted by certain persons.
+
+> 💡 If a DCA needs to support this extension as Destroy Condition, it must be assigned to one or more agents.
+> For example, John Doe has an employee laptop. 
+> On login the DCA will automatically be assigned to John.
+> If a Destroy Claim then contains a condition that references John Doe, the DCA can respond accordingly.
+> If a DCA is running on a server, you may statically assign an agent.
 
 |field name|required|description|type|example|
 |---|---|---|---|---|
@@ -58,11 +59,15 @@ Furthermore, the extension can be used in conditions to model executors.
 
 > 🛎️ This is a `destroySubjects` extension
 
+> 🧬 v1.0.0
+
 This extension can be used to address data based on its content.
 The SHA256 hash method is used for this purpose.
 It offers a sufficiently low collision rate to address data unambiguously on the basis of its content.
 In general, this extension can be used for all types of data.
 Especially file-based data are to be mentioned here.
+
+> 💡 For example, a DCA can maintain an index of data with corresponding hashes.
 
 |field name|required|description|type|example|
 |---|---|---|---|---|
@@ -72,28 +77,34 @@ Especially file-based data are to be mentioned here.
 
 > 🛎️ This is a `destroySubjects` extension
 
-This extension can be used to address data based on a uuid.
-In data management systems, unique IDs are often used to identify data sets.
-If this is done with UUIDv4, this extension can be used to address the data.
+> 🧬 v1.0.0
+
+This extension can be used to address data based on a UUID.
+In data management systems, universal unique IDs are often used to identify data sets.
+If this is done with UUIDv4, this extension can be used to address data.
 
 |field name|required|description|type|example|
 |---|---|---|---|---|
-|`uuid`|MUST|UUIDv4|`String`|`9e51ecff-71b3-449a-b7f9-1f1b54a6e844`|
+|`uuid`|MUST|UUIDv4 pointing to data |`String`|`baf2bed3-8f78-4d01-9ce6-7d24ebd560cd`|
+
 
 ### `std:destructionLevel`
 
 > 🛎️ This is a `destroyActions` extension
 
-This extension is used to describe the degree of deletion.
+> 🧬 v1.0.0
+
+This extension is used to describe the degree of technical deletion of the data under consideration.
 Five different levels of deletion are offered.
 
 + `recycled`: The data should be moved to the recycle bin only.
-If the data is in a database, a soft delete would be equivalent.
+If the data is in a database, it should be moved to a special "recycle" table/database.
 + `deleted`: In this level, data is marked as deleted.
 For files, this is done by the operating system.
 Usually the data remains on the hardware and is overwritten by new data at some point by chance.
 Special tools can often be used to restore the data.
 That the data existed is traceable by existing metadata.
+In database a soft delete flag SHOULD be used.
 + `metadata destroyed`: At this level, the metadata is also deleted.
 However, the data remains on the hardware until it is overwritten.
 Restoring requires reading the entire hardware, since the location of the data pieces is unknown.
@@ -101,6 +112,10 @@ Restoring requires reading the entire hardware, since the location of the data p
 An example of such a method is the Gutmann algorithm.
 + `physically destroyed`: The hardware on which the data is physically stored must be destroyed.
 Usually, a DCA will not be able to perform this level.
+
+> 💡 A DCA does not have to support all levels to support the extension itself.
+> If a level is not supported, the DCA can return `false` when evaluating the extension.
+> A DCA MAY also provide a notification.
 
 |field name|required|description|type|example|
 |---|---|---|---|---|
@@ -110,7 +125,9 @@ Usually, a DCA will not be able to perform this level.
 
 > 🛎️ This is a `destroyConditions` extension
 
-This extension is used when you want to delete data only from a certain point of time.  
+> 🧬 v1.0.0
+
+This extension is used when you want to delete data from a certain point of time.  
 
 |field name|required|description|type|example|
 |---|---|---|---|---|
@@ -120,7 +137,9 @@ This extension is used when you want to delete data only from a certain point of
 
 > 🛎️ This is a `destroyConditions` extension
 
-This extension is used when you want to delete data only until a certain point in time.
+> 🧬 v1.0.0
+
+This extension is used when you want to delete data until a certain point in time.
 
 |field name|required|description|type|example|
 |---|---|---|---|---|
@@ -130,9 +149,11 @@ This extension is used when you want to delete data only until a certain point i
 
 > 🛎️ This is a `destroyConditions` extension
 
+> 🧬 v1.0.0
+
 This extension aims to allow data to be deleted if the DCA has or has not a certain property.
 The property is generically encoded as string.
-So you can give a DCA for example the property that it is part of a department or other kind of group.
+For example, a DCA can be given the property that it is part of a department or other type of group.
 
 |field name|required|description|type|example|
 |---|---|---|---|---|
@@ -149,25 +170,32 @@ So you can give a DCA for example the property that it is part of a department o
 
 > 🛎️ This is a `destroyConditions` extension
 
+> 🧬 v1.0.0
+
 This extension allows to model if data should be deleted inside or outside to a country.
 The extension here refers to the physical location of the data.
 The DCA must be able to determine the physical location of the data. 
+It can be specified whether the data should be deleted inside or outside the country.
 
 |field name|required|description|type|example|
 |---|---|---|---|---|
 |`code`|MUST|Alpha3 code of a country. According to [ISO-3166-1](https://www.iso.org/iso-3166-country-codes.html).|`<alpha3>String`|`JPN`|
 |`scope`|MUST|Specify whether to delete inside or outside the country. Enumeration: `inside`, `outside`|`String`|`inside`|
 
-> ⚠️ There may be special cases where parts of the data are located in different countries.
-> Here you have to use the extension several times to cover all possible countries.
+> ⚠️ There may be special cases where parts of the data are in different countries.
+> You MUST use the extension several times to cover all possible countries where data fragments may be present.
 
 ### `std:geoLocation`
 
 > 🛎️ This is a `destroyConditions` extension
 
-This extension models the physical position of the data using Geometric Figures on the world map.
+> 🧬 v1.0.0
+
+This extension models the physical position of the data using geometric figures on a world map.
 [GeoJSON](https://geojson.org/) is used for this purpose.
-It can be determined whether the data should be deleted inside or outside the modeled regions.
+The extension here refers to the physical location of the data.
+The DCA must be able to determine the physical location of the data. 
+It can be specified whether the data should be deleted inside or outside the modelled regions.
 
 |field name|required|description|type|example|
 |---|---|---|---|---|
