@@ -3,7 +3,7 @@
   "$id": "std:toPointInTime",
   "title": "Standard To Point In Time",
   "description": "This extension is used when you want to delete data only until a certain point in time.",
-  "$comment": "The Interpreter must be able to get the current time and compare it with the given one in payload.",
+  "$comment": "The DCA must be able to receive the current time and compare it with the given one.",
   "type": "object",
   "unevaluatedProperties": false,
   "required": ["to"],

@@ -129,11 +129,12 @@ Usually, a DCA will not be able to perform this level.
 
 > 🧬 Compatibility [ `v1.0.0` ]
 
-This extension is used when you want to delete data from a certain point of time.  
+This extension is used when you want to delete data from a certain point of time.
+The DCA must be able to receive the current time and compare it with the given one.
 
 |field name|required|description|type|example|
 |---|---|---|---|---|
-|`from`|MUST|Point in time at which the deletion starts. MUST be [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html).|`<ISO8601>String`|`2022-12-01T00:00:00.000Z`|
+|`from`|MUST|Point in time at which the deletion starts. MUST be [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html) with time zones.|`<ISO8601>String`|`2022-12-01T00:00:00.000Z`|
 
 ### `std:toPointInTime`
 
@@ -142,10 +143,11 @@ This extension is used when you want to delete data from a certain point of time
 > 🧬 Compatibility [ `v1.0.0` ]
 
 This extension is used when you want to delete data until a certain point in time.
+The DCA must be able to receive the current time and compare it with the given one.
 
 |field name|required|description|type|example|
 |---|---|---|---|---|
-|`to`|MUST|Point in time from which the data should no longer be deleted. MUST be [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html).|`<ISO8601>String`|`2022-12-01T00:00:00.000Z`|
+|`to`|MUST|Point in time from which the data should no longer be deleted. MUST be [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html) with time zones.|`<ISO8601>String`|`2022-12-01T00:00:00.000Z`|
 
 ### `std:dcaProperty`
 
