@@ -12,7 +12,7 @@ class SupportObjectGenerator {
    * The default support is not a valid support object.
    * You need to support:
    * - normalMode or strictMode
-   * - manualMode or automatedMode
+   * - optInMode or automatedMode
    * - realMode or simulationMode
    * - silentMode or notificationMode
    * You also need at least one extension of type destroySubject.
@@ -22,13 +22,13 @@ class SupportObjectGenerator {
     this.#support = {
       extensions: {},
       destroyReasons: [],
-      modelVersion: [],
+      specVersion: [],
       strictMode: false,
       normalMode: false,
       realMode: false,
       simulationMode: false,
       automatedMode: false,
-      manualMode: false,
+      optInMode: false,
       silentMode: false,
       notificationMode: false,
       preAllEvaluationHook: () => {},
@@ -335,8 +335,8 @@ class SupportObjectGenerator {
         "SupportObjectGenerator: version parameter must be of type String."
       );
     }
-    this.#support.modelVersion = [
-      ...new Set([...this.#support.modelVersion, version]),
+    this.#support.specVersion = [
+      ...new Set([...this.#support.specVersion, version]),
     ];
   }
 
@@ -351,7 +351,7 @@ class SupportObjectGenerator {
         "SupportObjectGenerator: parameter version must be of type String."
       );
     }
-    this.#support.modelVersion = this.#support.modelVersion.filter(
+    this.#support.specVersion = this.#support.specVersion.filter(
       (ext) => ext !== version
     );
   }
@@ -431,13 +431,13 @@ class SupportObjectGenerator {
    * @param {Boolean} supported
    * @throws {TypeError} throws if parameter type is wrong
    */
-  supportManualMode(supported = true) {
+  supportOptInMode(supported = true) {
     if (!_.isBoolean(supported)) {
       throw new TypeError(
         "SupportObjectGenerator: parameter supported must be of type Boolean."
       );
     }
-    this.#support.manualMode = supported;
+    this.#support.optInMode = supported;
   }
 
   /**
@@ -568,7 +568,7 @@ class SupportObjectGenerator {
         "SupportObjectGenerator: you need to support at least one (real or simulation) mode."
       );
     }
-    if (!this.#support.manualMode && !this.#support.automatedMode) {
+    if (!this.#support.optInMode && !this.#support.automatedMode) {
       throw new SupportError(
         "SupportObjectGenerator: you need to support at least one (manual or automated) mode."
       );
@@ -588,7 +588,7 @@ class SupportObjectGenerator {
         "SupportObjectGenerator: DCA must at least support one destroySubject extension."
       );
     }
-    if (this.#support.strictMode && this.#support.modelVersion.length === 0) {
+    if (this.#support.strictMode && this.#support.specVersion.length === 0) {
       throw new SupportError(
         "SupportObjectGenerator: in strict mode the DCA needs to support at least one version of the destroy claim model."
       );

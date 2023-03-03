@@ -26,8 +26,8 @@ const isSimulationMode = (destroyclaim) =>
  * @param {Object} destroyclaim
  * @returns {Boolean} if simulation is on (true) or off (false)
  */
-const isManualMode = (destroyclaim) =>
-  "manualMode" in destroyclaim && destroyclaim.manualMode;
+const isOptInMode = (destroyclaim) =>
+  "optInMode" in destroyclaim && destroyclaim.optInMode;
 
 /**
  * Checks, if a user is to be notified on deletion
@@ -38,13 +38,12 @@ const isNotificationMode = (destroyclaim) =>
   "notificationMode" in destroyclaim && destroyclaim.notificationMode;
 
 /**
- * Checks, if a destroy claim is expired acoding to the expirationDate field.
+ * Checks, if a destroy claim is expired acoding to the expires field.
  * @param {Object} destroyclaim
  * @returns {Boolean} returns true if not expired and false when expired
  */
 const isExpired = (destroyclaim) =>
-  "expirationDate" in destroyclaim &&
-  destroyclaim.expirationDate < new Date().toISOString();
+  "expires" in destroyclaim && destroyclaim.expires < new Date().toISOString();
 
 /**
  * Will build a structure of extensions for better lookup.
@@ -141,7 +140,7 @@ module.exports = {
   xor,
   isStrictMode,
   isSimulationMode,
-  isManualMode,
+  isOptInMode,
   isNotificationMode,
   isExpired,
   buildReferencesList,

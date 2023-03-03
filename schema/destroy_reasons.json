@@ -1,0 +1,277 @@
+[
+    {
+        "code": "std:reason:data-quality:accessibility:accessibility",
+        "name": "Data Quality - Accessibility",
+        "description": "The accessibility of the data is not good enough"
+    },
+    {
+        "code": "std:reason:data-quality:accessibility:access-security",
+        "name": "Data Quality - Access Security",
+        "description": "The accessibility of the data is not secure enough"
+    },
+    {
+        "code":
+        "std:reason:data-quality:representational:concise-representation",
+        "name": "Data Quality - Concise Representation",
+        "description": "The data is not concise in its representation"
+    },
+    {
+        "code":
+        "std:reason:data-quality:representational:representational-consistency",
+        "name": "Data Quality - Representational Consistency",
+        "description": "The data is not consistent in its representation"
+    },
+    {
+        "code":
+        "std:reason:data-quality:representational:ease-of-understanding",
+        "name": "Data Quality - Ease of Understanding",
+        "description": "The data is not easy enough to understand"
+    },
+    {
+        "code": "std:reason:data-quality:representational:interpretability",
+        "name": "Data Quality - Interpretability",
+        "description": "The interpretability of the data is not of high quality"
+    },
+    {
+        "code":
+        "std:reason:data-quality:contextual:appropriate-amount-of-data",
+        "name": "Data Quality - Appropriate Amount of Data",
+        "description": "The amount of data is not appropriate"
+    },
+    {
+        "code": "std:reason:data-quality:contextual:completeness",
+        "name": "Data Quality - Completeness",
+        "description": "The data is not complete."
+    },
+    {
+        "code": "std:reason:data-quality:contextual:timeliness",
+        "name": "Data Quality - Timeliness",
+        "description": "The data is not up to date"
+    },
+    {
+        "code": "std:reason:data-quality:contextual:relevancy",
+        "name": "Data Quality - Relevancy",
+        "description": "The data has no relevancy"
+    },
+    {
+        "code": "std:reason:data-quality:contextual:value-added",
+        "name": "Data Quality - Value-added",
+        "description": "The data offers no added value"
+    },
+    {
+        "code": "std:reason:data-quality:intrinsic:reputation",
+        "name": "Data Quality - Reputation",
+        "description": "The reputation of the data is questionable."
+    },
+    {
+        "code": "std:reason:data-quality:intrinsic:believability",
+        "name": "Data Quality - Believability",
+        "description": "The data is not believable enough"
+    },
+    {
+        "code": "std:reason:data-quality:intrinsic:objectivity",
+        "name": "Data Quality - Objectivity",
+        "description": "The data is not objective enough"
+    },
+    {
+        "code": "std:reason:data-quality:intrinsic:accuracy",
+        "name": "Data Quality - Accuracy",
+        "description": "The data is not accurate enough"
+    },
+    {
+        "code": "std:reason:organizational:principles:green-it",
+        "name": "Organizational - Principles - Green IT",
+        "description": "Keeping the data is ecologically questionable."
+    },
+    {
+        "code": "std:reason:organizational:principles:ethics",
+        "name": "Organizational - Principles - Ethics",
+        "description": "The ethics of the data are questionable"
+    },
+    {
+        "code": "std:reason:organizational:principles:moral",
+        "name": "Organizational - Principles - Moral",
+        "description": "The moral of the data is questionable"
+    },
+    {
+        "code": "std:reason:organizational:principles:fairness",
+        "name": "Organizational - Principles - Fairness",
+        "description": "The fairness of the data is questionable"
+    },
+    {
+        "code": "std:reason:organizational:economics:irrelevance",
+        "name": "Organizational - Economics - Irrelevance",
+        "description": "The data is irrelevant"
+    },
+    {
+        "code": "std:reason:organizational:economics:lack-of-value",
+        "name": "Organizational - Economics - Lack of Value",
+        "description": "The data has a lack of value"
+    },
+    {
+        "code": "std:reason:organizational:economics:save-costs",
+        "name": "Organizational - Economics - Save Costs",
+        "description": "The data cause high costs"
+    },
+    {
+        "code": "std:reason:organizational:economics:save-time",
+        "name": "Organizational - Economics - Save Time",
+        "description": "The data costs time"
+    },
+    {
+        "code": "std:reason:technical:environment-focused:free-storage-space",
+        "name": "Technical - Environment-focused - Free Storage Space",
+        "description": "The storage space of the data is needed"
+    },
+    {
+        "code": "std:reason:technical:environment-focused:improve-efficacy",
+        "name": "Technical - Environment-focused - Improve Efficacy",
+        "description": "Deleting the data improves efficacy"
+    },
+    {
+        "code": "std:reason:technical:environment-focused:improve-efficiency",
+        "name": "Technical - Environment-focused - Improve Efficiency",
+        "description": "Deleting the data improves efficiency"
+    },
+    {
+        "code": "std:reason:technical:data-focused:corrupted",
+        "name": "Technical - Data-focused - Corrupted",
+        "description": "The data is corrupted (e.g. missing bytes on transfere)"
+    },
+    {
+        "code": "std:reason:technical:data-focused:representation",
+        "name": "Technical - Data-focused - Representation",
+        "description": "The representation of the data is incorrect"
+    },
+    {
+        "code": "std:reason:technical:data-focused:invalid-data",
+        "name": "Technical - Data-focused - Invalid Data",
+        "description": "The data is invalid"
+    },
+    {
+        "code":
+        "std:reason:compliance:laws-contracts:crime-illegal:betrayal-of-secrets",
+        "name": "Compliance - Laws/Contracts - Crime/Illegal - Betrayal of Secrets",
+        "description": "The data violates the secrecy"
+    },
+    {
+        "code": "std:reason:compliance:laws-contracts:crime-illegal:copyright",
+        "name": "Compliance - Laws/Contracts - Crime/Illegal - Copyright",
+        "description": "The data violates the copyright"
+    },
+    {
+        "code": "std:reason:compliance:laws-contracts:data-protection:ccpa",
+        "name": "Compliance - Laws/Contracts - Data Protection - CCPA",
+        "description": "The data violates the California Consumer Privacy Act (CCPA)"
+    },
+    {
+        "code": "std:reason:compliance:laws-contracts:data-protection:dsgvo",
+        "name": "Compliance - Laws/Contracts - Data Protection - DSGVO",
+        "description": "The data violates the Datenschutz-Grundverordnung (DSGVO)"
+    },
+    {
+        "code": "std:reason:compliance:laws-contracts:data-protection:gdpr",
+        "name": "Compliance - Laws/Contracts - Data Protection - GDPR",
+        "description": "The data violates the General Data Protection Regulation (GDPR)"
+    },
+    {
+        "code": "std:reason:compliance:laws-contracts:nda",
+        "name": "Compliance - Laws/Contracts - NDA",
+        "description": "The data violates a Non-Disclosure Agreement (NDA)"
+    },
+    {
+        "code":
+        "std:reason:compliance:laws-contracts:expired-retention-period",
+        "name": "Compliance - Laws/Contracts - Expired Retention Period",
+        "description": "The data retention period has expired"
+    },
+    {
+        "code": "std:reason:compliance:laws-contracts:sla",
+        "name": "Compliance - Laws/Contracts - SLA",
+        "description": "The data violates the Service-Level-Agreement (SLA)"
+    },
+    {
+        "code": "std:reason:compliance:standards:external:nist",
+        "name": "Compliance - Standards - External - NIST",
+        "description": "The data does not comply with one or more NIST standards"
+    },
+    {
+        "code": "std:reason:compliance:standards:external:iso",
+        "name": "Compliance - Standards - External - ISO",
+        "description": "The data does not comply with one or more ISO standards"
+    },
+    {
+        "code": "std:reason:compliance:standards:external:din",
+        "name": "Compliance - Standards - External - DIN",
+        "description": "The data does not comply with one or more DIN standards"
+    },
+    {
+        "code": "std:reason:compliance:standards:internal:employee-guides",
+        "name": "Compliance - Standards - Internal - Employee Guides",
+        "description": "he data does not comply with the employee guidelines"
+    },
+    {
+        "code":
+        "std:reason:security:integrity-reliability:malicious-executable-data",
+        "name": "Security - Integrity/Reliability - Malicious Executable Data",
+        "description": "The data contains malicious executable content and can be dangerous"
+    },
+    {
+        "code": "std:reason:security:integrity-reliability:malicious-data",
+        "name": "Security - Integrity/Reliability - Malicious Data",
+        "description": "The data contains malicious content and can be dangerous"
+    },
+    {
+        "code": "std:reason:security:integrity-reliability:unintended-changes",
+        "name": "Security - Integrity/Reliability - Unintended Changes",
+        "description": "The data contains unintended changes"
+    },
+    {
+        "code":
+        "std:reason:security:integrity-reliability:social-engineering:scareware",
+        "name": "Security - Integrity/Reliability - Social Engineering - Scareware",
+        "description": "The data contains scareware and can be dangerous"
+    },
+    {
+        "code":
+        "std:reason:security:integrity-reliability:social-engineering:spam",
+        "name": "Security - Integrity/Reliability - Social Engineering - Spam",
+        "description": "The data contains spam and can be dangerous"
+    },
+    {
+        "code":
+        "std:reason:security:integrity-reliability:social-engineering:phishing",
+        "name": "Security - Integrity/Reliability - Social Engineering - Phishing",
+        "description": "The data contains phishing and can be dangerous"
+    },
+    {
+        "code": "std:reason:security:confidentiality:change-of-scope",
+        "name": "Security - Confidentiality - Change of Scope",
+        "description": "The data is no longer save due to a change of scope"
+    },
+    {
+        "code": "std:reason:security:confidentiality:clear-traces",
+        "name": "Security - Confidentiality - Clear Traces",
+        "description": "The data must be deleted to clear traces"
+    },
+    {
+        "code": "std:reason:security:confidentiality:storage-location",
+        "name": "Security - Confidentiality - Storage Location",
+        "description": "The data is no longer save in its storage location"
+    },
+    {
+        "code": "std:reason:security:confidentiality:missing-encryption",
+        "name": "Security - Confidentiality - Missing Encryption",
+        "description": "The data is missing an encryption"
+    },
+    {
+        "code": "std:reason:security:confidentiality:discard-sell-hardware",
+        "name": "Security - Confidentiality - Discard/Sell Hardware",
+        "description": "The data is located on hardware to be sold or discarded"
+    },
+    {
+        "code": "std:reason:custom",
+        "name": "Custom Reason",
+        "description": "A custom reason"
+    }
+]

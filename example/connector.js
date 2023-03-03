@@ -7,6 +7,16 @@ let index = [];
 
 const sha256 = (buffer) => hasha.async(buffer, { algorithm: "sha256" });
 
+const readFiles = async (dir) => {
+  try {
+    const files = await glob(dir, {});
+    index = files.map((f) => ({ path: f }));
+  } catch(e) {
+    throw new Error(e)
+  }
+}
+
+/*
 const readFiles = async (dir) =>
   new Promise((resolve, reject) => {
     glob(dir, {}, (er, files) => {
@@ -18,6 +28,7 @@ const readFiles = async (dir) =>
       }
     });
   });
+*/
 
 const buildIndex = async () =>
   Promise.all(

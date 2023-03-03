@@ -112,9 +112,9 @@ const exampleDestroyClaim = {
   isActive: true,
   strictMode: false,
   notificationMode: false,
-  manualMode: false,
+  optInMode: false,
   simulationMode: false,
-  modelVersion: "1.0.0",
+  specVersion: "1.0.0",
   title: "Delete the old PowerPoint with old CI",
   destroyReasons: ["security/integrity/malicious-data"],
   destroyContacts: [

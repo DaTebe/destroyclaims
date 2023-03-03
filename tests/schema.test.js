@@ -47,11 +47,11 @@ let exampleDestroyClaim = {};
  */
 beforeEach(() => {
   exampleDestroyClaim = {
-    modelVersion: "1.0.0",
+    specVersion: "1.0.0",
     id: "02faafea-1c31-4771-b90b-2e8380af06dd",
     isActive: false,
     strictMode: false,
-    manualMode: false,
+    optInMode: false,
     notificationMode: false,
     simulationMode: false,
     title: "Delete the old PowerPoint with old CI",

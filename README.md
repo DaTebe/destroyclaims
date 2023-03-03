@@ -35,7 +35,9 @@ The DCAs generated using the library already adhere to the Destroy Claim Model S
 
 + [Destroy Claim Model 1.0.0 Specification](docs/destroy-claim.md)
 
-+ [Standart Extensions](docs/std-extensions.md)
++ [Standard Extensions](docs/std-extensions.md)
+
++ [Standard Destroy Reasons](docs/destroy-reasons.md)
 
 + [destroyclaim-js Library Documentation](docs/destroyclaim-js.md/)
 

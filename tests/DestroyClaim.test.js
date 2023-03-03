@@ -57,7 +57,7 @@ beforeEach(async () => {
     isActive: true,
     strictMode: false,
     notificationMode: false,
-    manualMode: false,
+    optInMode: false,
     destroyClaim: "1.0.0",
     title: "Delete the old PowerPoint with old CI",
     destroyReasons: ["security/integrity/malicious-data"],
@@ -113,7 +113,7 @@ beforeEach(async () => {
   support.supportRealMode(true);
   support.supportSimulationMode(true);
   support.supportAutomatedMode(true);
-  support.supportManualMode(true, (dc, execute) => {
+  support.supportOptInMode(true, (dc, execute) => {
     // eslint-disable-next-line global-require
     const readline = require("readline");
     const rl = readline.createInterface({
@@ -564,7 +564,7 @@ test("DestroyClaim: Throws on execution if destroy claim is not active", async (
 });
 
 test("DestroyClaim: Throws on execution if destroy claim is expired", async () => {
-  destroyclaim.expirationDate = "2022-12-01T00:00:00.000Z";
+  destroyclaim.expires = "2022-12-01T00:00:00.000Z";
   const dc = new DestroyClaim(destroyclaim, support.getSupportObject());
   expect(async () => dc.process()).rejects.toThrow(
     "DestroyClaim: destroy claim is expired"
@@ -573,16 +573,16 @@ test("DestroyClaim: Throws on execution if destroy claim is expired", async () =
 
 test("DestroyClaim: Methods return correct values", async () => {
   destroyclaim.strictMode = false;
-  destroyclaim.manualMode = false;
+  destroyclaim.optInMode = false;
   destroyclaim.notificationMode = false;
   destroyclaim.simulationMode = false;
-  destroyclaim.expirationDate = "2022-12-01T00:00:00.000Z";
+  destroyclaim.expires = "2022-12-01T00:00:00.000Z";
   destroyclaim.issued = "2022-12-01T00:00:00.000Z";
   destroyclaim.modified = "2022-12-01T00:00:00.000Z";
   destroyclaim.title = "test";
   destroyclaim.description = "test";
   destroyclaim.keywords = ["test"];
-  destroyclaim.modelVersion = "1.0.0";
+  destroyclaim.specVersion = "1.0.0";
   destroyclaim.signature = "testSignature";
   destroyclaim.conditions = true;
   destroyclaim.destroyActions = [
@@ -605,15 +605,15 @@ test("DestroyClaim: Methods return correct values", async () => {
   expect(dc.getIsActive()).toEqual(true);
   expect(dc.getStrictMode()).toEqual(false);
   expect(dc.getSimulationMode()).toEqual(false);
-  expect(dc.getManualMode()).toEqual(false);
+  expect(dc.getOptInMode()).toEqual(false);
   expect(dc.getNotificationMode()).toEqual(false);
-  expect(dc.getExpirationDate()).toEqual("2022-12-01T00:00:00.000Z");
+  expect(dc.getexpires()).toEqual("2022-12-01T00:00:00.000Z");
   expect(dc.getIssued()).toEqual("2022-12-01T00:00:00.000Z");
   expect(dc.getModified()).toEqual("2022-12-01T00:00:00.000Z");
   expect(dc.getTitle()).toEqual("test");
   expect(dc.getDescription()).toEqual("test");
   expect(dc.getKeywords()).toEqual(["test"]);
-  expect(dc.getModelVersion()).toEqual("1.0.0");
+  expect(dc.getSpecVersion()).toEqual("1.0.0");
   expect(dc.getSignature()).toEqual("testSignature");
   expect(dc.getConditions()).toEqual(true);
   expect(dc.getDestroySubjects()[0]).toBeInstanceOf(DestroySubjectExtension);

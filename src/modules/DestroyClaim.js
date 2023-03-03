@@ -417,11 +417,11 @@ class DestroyClaim {
   }
 
   /**
-   * Get the manualMode field of the destroy claim
-   * @returns {(Boolean|undefined)} returns manualMode
+   * Get the optInMode field of the destroy claim
+   * @returns {(Boolean|undefined)} returns optInMode
    */
-  getManualMode() {
-    return this.#destroyclaimOriginal.manualMode;
+  getOptInMode() {
+    return this.#destroyclaimOriginal.optInMode;
   }
 
   /**
@@ -433,11 +433,11 @@ class DestroyClaim {
   }
 
   /**
-   * Get the expirationDate field of the destroy claim
-   * @returns {(String|undefined)} returns expirationDate
+   * Get the expires field of the destroy claim
+   * @returns {(String|undefined)} returns expires
    */
-  getExpirationDate() {
-    return this.#destroyclaimOriginal.expirationDate;
+  getexpires() {
+    return this.#destroyclaimOriginal.expires;
   }
 
   /**
@@ -481,11 +481,11 @@ class DestroyClaim {
   }
 
   /**
-   * Get the modelVersion field of the destroy claim
-   * @returns {(String|undefined)} returns modelVersion
+   * Get the specVersion field of the destroy claim
+   * @returns {(String|undefined)} returns specVersion
    */
-  getModelVersion() {
-    return this.#destroyclaimOriginal.modelVersion;
+  getSpecVersion() {
+    return this.#destroyclaimOriginal.specVersion;
   }
 
   /**

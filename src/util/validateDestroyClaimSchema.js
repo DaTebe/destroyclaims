@@ -16,8 +16,8 @@ const validateCore = (destroyclaim) => {
   const dcSchema = JSON.parse(JSON.stringify(schema));
   if (isStrictMode(destroyclaim)) {
     dcSchema.unevaluatedProperties = false;
-    dcSchema.required.push("modelVersion");
-    dcSchema.required.push("manualMode");
+    dcSchema.required.push("specVersion");
+    dcSchema.required.push("optInMode");
     dcSchema.required.push("notificationMode");
     dcSchema.required.push("simulationMode");
     dcSchema.properties.destroySubjects.items.required = ["action"];

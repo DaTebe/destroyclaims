@@ -86,14 +86,14 @@ class DestroyClaimValidator {
    */
   #checkVersionSupport(destroyclaim) {
     if (isStrictMode(destroyclaim)) {
-      if (!("modelVersion" in destroyclaim)) {
+      if (!("specVersion" in destroyclaim)) {
         throw new SupportError(
           `destroy claim needs a model version in strict mode`
         );
       }
-      if (!this.support.modelVersion.includes(destroyclaim.modelVersion)) {
+      if (!this.support.specVersion.includes(destroyclaim.specVersion)) {
         throw new SupportError(
-          `destroy claim version ${destroyclaim.modelVersion} is not supported by DCA`
+          `destroy claim version ${destroyclaim.specVersion} is not supported by DCA`
         );
       }
     }
@@ -126,12 +126,12 @@ class DestroyClaimValidator {
    * @throws {SupportError} throws if mode is not supported
    */
   #checkManualAutomatedSupport(destroyclaim) {
-    if (destroyclaim.manualMode && !this.support.manualMode) {
+    if (destroyclaim.optInMode && !this.support.optInMode) {
       throw new SupportError(
         `DestroyClaimValidator: manual mode not supported`
       );
     }
-    if (!destroyclaim.manualMode && !this.support.automatedMode) {
+    if (!destroyclaim.optInMode && !this.support.automatedMode) {
       throw new SupportError(
         `DestroyClaimValidator: automated mode not supported`
       );
