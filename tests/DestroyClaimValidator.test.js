@@ -11,7 +11,7 @@ let support = {};
 let destroyclaim = {};
 beforeEach(() => {
   support = {
-    modelVersion: ["1.0.0"],
+    specVersion: ["1.0.0"],
     extensions: {
       "std:sha256": {},
       "std:agent": {},
@@ -30,7 +30,7 @@ beforeEach(() => {
     realMode: true,
     simulationMode: false,
     automatedMode: true,
-    manualMode: false,
+    optInMode: false,
     silentMode: true,
     notificationMode: false,
   };
@@ -38,10 +38,10 @@ beforeEach(() => {
     id: "02faafea-1c31-4771-b90b-2e8380af06dd",
     isActive: true,
     strictMode: false,
-    manualMode: false,
+    optInMode: false,
     notificationMode: false,
     simulationMode: false,
-    modelVersion: "1.0.0",
+    specVersion: "1.0.0",
     title: "Delete the old PowerPoint with old CI",
     destroyReasons: ["security/integrity/malicious-data"],
     destroyContacts: [
@@ -225,10 +225,10 @@ test("Strict Mode: Unsupported simulation mode throws", () => {
 /**
  * Test Validator: manual/automated mode checks
  */
-test("Normal Mode: Unsupported manualMode throws", () => {
+test("Normal Mode: Unsupported optInMode throws", () => {
   destroyclaim.strictMode = false;
-  destroyclaim.manualMode = true;
-  support.manualMode = false;
+  destroyclaim.optInMode = true;
+  support.optInMode = false;
   const Validator = new DestroyClaimValidator(destroyclaim, support);
   expect(Validator.validateDestroyClaim()).toEqual(false);
   expect(Validator.getValidationErrors()[0].message).toEqual(
@@ -238,7 +238,7 @@ test("Normal Mode: Unsupported manualMode throws", () => {
 
 test("Normal Mode: Unsupported automated mode throws", () => {
   destroyclaim.strictMode = false;
-  destroyclaim.manualMode = false;
+  destroyclaim.optInMode = false;
   support.automatedMode = false;
   const Validator = new DestroyClaimValidator(destroyclaim, support);
   expect(Validator.validateDestroyClaim()).toEqual(false);
@@ -247,10 +247,10 @@ test("Normal Mode: Unsupported automated mode throws", () => {
   );
 });
 
-test("Strict Mode: Unsupported manualMode throws", () => {
+test("Strict Mode: Unsupported optInMode throws", () => {
   destroyclaim.strictMode = true;
-  destroyclaim.manualMode = true;
-  support.manualMode = false;
+  destroyclaim.optInMode = true;
+  support.optInMode = false;
   const Validator = new DestroyClaimValidator(destroyclaim, support);
   expect(Validator.validateDestroyClaim()).toEqual(false);
   expect(Validator.getValidationErrors()[0].message).toEqual(
@@ -260,7 +260,7 @@ test("Strict Mode: Unsupported manualMode throws", () => {
 
 test("Strict Mode: Unsupported automated mode throws", () => {
   destroyclaim.strictMode = true;
-  destroyclaim.manualMode = false;
+  destroyclaim.optInMode = false;
   support.automatedMode = false;
   const Validator = new DestroyClaimValidator(destroyclaim, support);
   expect(Validator.validateDestroyClaim()).toEqual(false);
@@ -333,14 +333,14 @@ test("Strict Mode: Supported version does validate to true", () => {
 
 test("Strict Mode: Missing version does validate to false", () => {
   destroyclaim.strictMode = true;
-  delete destroyclaim.modelVersion;
+  delete destroyclaim.specVersion;
   const Validator = new DestroyClaimValidator(destroyclaim, support);
   expect(Validator.validateDestroyClaim()).toEqual(false);
 });
 
 test("Strict Mode: Unsupported version does validate to false", () => {
   destroyclaim.strictMode = true;
-  destroyclaim.modelVersion = "1.0.1";
+  destroyclaim.specVersion = "1.0.1";
   const Validator = new DestroyClaimValidator(destroyclaim, support);
   expect(Validator.validateDestroyClaim()).toEqual(false);
 });

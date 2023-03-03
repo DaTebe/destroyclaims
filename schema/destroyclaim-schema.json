@@ -173,7 +173,7 @@
       "default": "",
       "examples": ["This is a new release with awesome features"]
     },
-    "modelVersion": {
+    "specVersion": {
       "type": "string",
       "title": "Destroy Claim Version",
       "description": "A string giving the version of the used destroy claim model.",
@@ -192,7 +192,7 @@
       "description": "Indicates if the agent should run in strict mode.",
       "default": false
     },
-    "manualMode": {
+    "optInMode": {
       "type": "boolean",
       "title": "Manual Mode",
       "description": "Indicates whether the agent requires a human actor to approve the deletion.",
@@ -210,7 +210,7 @@
       "description": "Indicates if the agent should run in simulation mode.",
       "default": false
     },
-    "expirationDate": {
+    "expires": {
       "type": "string",
       "format": "date-time",
       "title": "Expiration Date",

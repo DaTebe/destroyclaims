@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 const fs = require("fs").promises;
-const { isManualMode } = require("../src/util/dcTools");
+const { isOptInMode } = require("../src/util/dcTools");
 
 // Data Connector
 const connector = require("./connector");
@@ -21,7 +21,7 @@ support.supportStrictMode();
 support.supportRealMode();
 support.supportSimulationMode();
 support.supportAutomatedMode();
-support.supportManualMode();
+support.supportOptInMode();
 support.supportSilentMode();
 support.supportNotificationMode();
 support.addSupportedVersion("1.0.0");
@@ -133,9 +133,9 @@ const exampleDestroyClaim = {
   isActive: true,
   strictMode: false,
   notificationMode: true,
-  manualMode: false,
+  optInMode: false,
   simulationMode: false,
-  modelVersion: "1.0.0",
+  specVersion: "1.0.0",
   title: "Delete the old PowerPoint with old CI",
   destroyReasons: ["security/integrity/malicious-data"],
   destroyContacts: [
@@ -231,7 +231,7 @@ const testFiles = [
 
   const dc = new DestroyClaim(exampleDestroyClaim, support.getSupportObject());
   try {
-    if (isManualMode(dc.getDestroyClaimJSON())) {
+    if (isOptInMode(dc.getDestroyClaimJSON())) {
       // eslint-disable-next-line global-require
       const readline = require("readline");
       const rl = readline.createInterface({

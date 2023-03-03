@@ -5,7 +5,7 @@ const {
   xor,
   isStrictMode,
   isSimulationMode,
-  isManualMode,
+  isOptInMode,
   isNotificationMode,
   isExpired,
   buildReferencesList,
@@ -24,7 +24,7 @@ beforeEach(() => {
     id: "02faafea-1c31-4771-b90b-2e8380af06dd",
     isActive: true,
     strictMode: false,
-    expirationDate: "2100-01-01T00:00:00.000Z",
+    expires: "2100-01-01T00:00:00.000Z",
     destroyClaim: "1.0.0",
     title: "Delete the old PowerPoint with old CI",
     destroyReasons: ["security/integrity/malicious-data"],
@@ -171,19 +171,19 @@ test("simulationMode field set to true returns true", () => {
 /**
  * Test manual mode
  */
-test("Missing manualMode field returns false", () => {
-  delete destroyClaim.manualMode;
-  expect(isManualMode(destroyClaim)).toEqual(false);
+test("Missing optInMode field returns false", () => {
+  delete destroyClaim.optInMode;
+  expect(isOptInMode(destroyClaim)).toEqual(false);
 });
 
-test("manualMode field set to false returns false", () => {
-  destroyClaim.manualMode = false;
-  expect(isManualMode(destroyClaim)).toEqual(false);
+test("optInMode field set to false returns false", () => {
+  destroyClaim.optInMode = false;
+  expect(isOptInMode(destroyClaim)).toEqual(false);
 });
 
-test("manualMode field set to true returns true", () => {
-  destroyClaim.manualMode = true;
-  expect(isManualMode(destroyClaim)).toEqual(true);
+test("optInMode field set to true returns true", () => {
+  destroyClaim.optInMode = true;
+  expect(isOptInMode(destroyClaim)).toEqual(true);
 });
 
 /**
@@ -207,38 +207,38 @@ test("notificationMode field set to true returns true", () => {
 /**
  * Test expiration date
  */
-test("Normal Mode: Missing expirationDate field validates to false", () => {
-  delete destroyClaim.expirationDate;
+test("Normal Mode: Missing expires field validates to false", () => {
+  delete destroyClaim.expires;
   destroyClaim.strictMode = false;
   expect(isExpired(destroyClaim)).toEqual(false);
 });
 
-test("Strict Mode: Missing expirationDate field validates to false", () => {
-  delete destroyClaim.expirationDate;
+test("Strict Mode: Missing expires field validates to false", () => {
+  delete destroyClaim.expires;
   destroyClaim.strictMode = true;
   expect(isExpired(destroyClaim)).toEqual(false);
 });
 
-test("Normal Mode: Past expirationDate field validates to true", () => {
-  destroyClaim.expirationDate = "2010-01-01T00:00:00.000Z";
+test("Normal Mode: Past expires field validates to true", () => {
+  destroyClaim.expires = "2010-01-01T00:00:00.000Z";
   destroyClaim.strictMode = false;
   expect(isExpired(destroyClaim)).toEqual(true);
 });
 
-test("Strict Mode: Missing expirationDate field validates to true", () => {
-  destroyClaim.expirationDate = "2010-01-01T00:00:00.000Z";
+test("Strict Mode: Missing expires field validates to true", () => {
+  destroyClaim.expires = "2010-01-01T00:00:00.000Z";
   destroyClaim.strictMode = true;
   expect(isExpired(destroyClaim)).toEqual(true);
 });
 
-test("Normal Mode: Future expirationDate field validates to false", () => {
-  destroyClaim.expirationDate = "2100-01-01T00:00:00.000Z";
+test("Normal Mode: Future expires field validates to false", () => {
+  destroyClaim.expires = "2100-01-01T00:00:00.000Z";
   destroyClaim.strictMode = false;
   expect(isExpired(destroyClaim)).toEqual(false);
 });
 
-test("Strict Mode: Future expirationDate field validates to false", () => {
-  destroyClaim.expirationDate = "2100-01-01T00:00:00.000Z";
+test("Strict Mode: Future expires field validates to false", () => {
+  destroyClaim.expires = "2100-01-01T00:00:00.000Z";
   destroyClaim.strictMode = true;
   expect(isExpired(destroyClaim)).toEqual(false);
 });

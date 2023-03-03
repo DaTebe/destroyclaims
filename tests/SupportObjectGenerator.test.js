@@ -381,7 +381,7 @@ test("removeSupportedDestroyReason throws on wrong parameter types", () => {
 
 test("addSupportedVersion adds version", () => {
   sg.addSupportedVersion("1.0.0");
-  expect(sg.getSupportObject().modelVersion.includes("1.0.0")).toEqual(true);
+  expect(sg.getSupportObject().specVersion.includes("1.0.0")).toEqual(true);
 });
 
 test("addSupportedVersion throws on wrong parameter types", () => {
@@ -474,7 +474,7 @@ test("supportAutomatedMode saves value", () => {
   sg.supportAutomatedMode(true);
   expect(sg.getSupportObject().automatedMode).toEqual(true);
   sg.supportAutomatedMode(false);
-  sg.supportManualMode(true); // need to support at leat one mode
+  sg.supportOptInMode(true); // need to support at leat one mode
   expect(sg.getSupportObject().automatedMode).toEqual(false);
 });
 
@@ -484,18 +484,18 @@ test("supportAutomatedMode throws on wrong parameter types", () => {
   );
 });
 
-test("supportManualMode saves value", () => {
-  sg.supportManualMode();
-  expect(sg.getSupportObject().manualMode).toEqual(true);
-  sg.supportManualMode(true);
-  expect(sg.getSupportObject().manualMode).toEqual(true);
-  sg.supportManualMode(false);
+test("supportOptInMode saves value", () => {
+  sg.supportOptInMode();
+  expect(sg.getSupportObject().optInMode).toEqual(true);
+  sg.supportOptInMode(true);
+  expect(sg.getSupportObject().optInMode).toEqual(true);
+  sg.supportOptInMode(false);
   sg.supportAutomatedMode(true); // need to support at leat one mode
-  expect(sg.getSupportObject().manualMode).toEqual(false);
+  expect(sg.getSupportObject().optInMode).toEqual(false);
 });
 
-test("supportManualMode throws on wrong parameter types", () => {
-  expect(() => sg.supportManualMode(1)).toThrow(
+test("supportOptInMode throws on wrong parameter types", () => {
+  expect(() => sg.supportOptInMode(1)).toThrow(
     "SupportObjectGenerator: parameter supported must be of type Boolean."
   );
 });
@@ -545,7 +545,7 @@ test("getSupportObject throws on wrong parameter types", () => {
     "SupportObjectGenerator: you need to support at least one (real or simulation) mode."
   );
   sg.supportRealMode();
-  sg.supportManualMode(false);
+  sg.supportOptInMode(false);
   sg.supportAutomatedMode(false);
   expect(() => sg.getSupportObject()).toThrow(
     "SupportObjectGenerator: you need to support at least one (manual or automated) mode."

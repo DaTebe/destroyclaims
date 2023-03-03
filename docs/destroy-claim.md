@@ -101,12 +101,12 @@ Adding additional properties is allowed.
 |---|---|---|---|---|
 |`id`|MUST|The unique id to identify a Destroy Claim. MUST be generated using [UUIDv4](https://datatracker.ietf.org/doc/html/rfc4122.html). It is needed to easily distinguish between different Destroy Claims. Can be used, for example, when a DCA wants to implement a backoff strategy for Destroy Claims that are not yet executable.|`String`|`02faafea-1c31-4771-b90b-2e8380af06dd`|
 |`isActive`|MUST|Indicates if a Destroy Claim is active. If `isActive` is `false`, the Destroy Claim MUST NOT be executed. It can be used to ensure that a Destroy Claim is not accidentally executed at design time.|`Boolean`|`true`, `false`|
-|`modelVersion`|SHOULD|Indicates which version of the Destroy Claim Model Specification was used to generate this Destroy Claim. [Semantic Versioning 2.0.0](https://semver.org/) MUST be used.|`String`|`1.0.0`|
-|`expirationDate`|SHOULD|When Destroy Claims are not managed by a central entity such as a catalog, it can be difficult to decide when a Destroy Claim is no longer required to be evaluated. Therefore, it may be useful to let Destroy Claims expire over time. As of the specified date, the Destroy Claim will no longer be executed.[ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) with time zones MUST be used.|`<ISO8601>String`|`2024-01-01T00:00:00.000Z`|
+|`specVersion`|SHOULD|Indicates which version of the Destroy Claim Model Specification was used to generate this Destroy Claim. [Semantic Versioning 2.0.0](https://semver.org/) MUST be used.|`String`|`1.0.0`|
+|`expires`|SHOULD|When Destroy Claims are not managed by a central entity such as a catalog, it can be difficult to decide when a Destroy Claim is no longer required to be evaluated. Therefore, it may be useful to let Destroy Claims expire over time. As of the specified date, the Destroy Claim will no longer be executed.[ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) with time zones MUST be used.|`<ISO8601>String`|`2024-01-01T00:00:00.000Z`|
 |`strictMode`|SHOULD|Indicates whether the DCA should act in strict mode or normal mode. This can make a difference in certain cases. If not set, strict mode is not to be applied and normal mode is used. If the DCA does not support the selected mode (strict or normal), the Destroy Claim MUST NOT be evaluated and executed.|`Boolean`|`true`, `false`|
 |`simulationMode`|SHOULD|Indicates whether the DCA should act in simulation mode or real mode. In simulation mode the DCA MUST NOT interact with the real data in the environment. Not all DCAs support simulated execution. If not set, simulation mode is not to be applied. If the DCA does not support the selected mode (simulation or real), the Destroy Claim MUST NOT be evaluated and executed.|`Boolean`|`true`, `false`|
 |`notificationMode`|SHOULD|Indicates whether the DCA should act in notification mode or silent mode. In notification mode the DCA MUST notify on execution of a Destroy Claim. Not all DCAs support notifications. If not set, notification mode is not to be applied. If the DCA does not support the selected mode (notification or silent), the Destroy Claim MUST NOT be evaluated and executed.|`Boolean`|`true`, `false`|
-|`manualMode`|SHOULD|Indicates whether the DCA should act in manual mode or automated mode. In manual mode the DCA MUST obtain the consent of a user to execute a Destroy Claim. Not all DCAs support manual mode. If not set, automated mode is to be applied. If the DCA does not support the selected mode (manual or automated), the Destroy Claim MUST NOT be evaluated and executed.|`Boolean`|`true`, `false`|
+|`optInMode`|SHOULD|Indicates whether the DCA should act in manual mode or automated mode. In manual mode the DCA MUST obtain the consent of a user to execute a Destroy Claim. Not all DCAs support manual mode. If not set, automated mode is to be applied. If the DCA does not support the selected mode (manual or automated), the Destroy Claim MUST NOT be evaluated and executed.|`Boolean`|`true`, `false`|
 |`title`|SHOULD|Destroy Claims SHOULD have easy to understand names that describe what they are about. May be omitted when Destroy Claims are handled fully automated.|`String`|`Financial Report 2019`, `Personal Data Max Mustermann`, `Sensor Data S123 2022.04`|
 |`description`|SHOULD|A detailed description of the Destroy Claim. The description can help a human actor to understand what the Destroy Claim is about and what the context is.|`String`|`We need to delete the test data, because it contains errors.`|
 |`keywords`|SHOULD|Keywords which tag the Destroy Claim. Keywords can be used to make the Destroy Claims easier to find (e.g., in a data catalog system).|`[String]`|`["personal data", "report", "law"]`|
@@ -299,9 +299,9 @@ If `strictMode` is not set, the default value is `false`.
 If the `strictMode` is `false`, the Destroy Claim is to be evaluated in normal mode.
 If `strictMode` is set to `true`, the DCA has to reject the Destroy Claim in the following cases:
 
-+ If `modelVersion` is not set or the specified version is not supported by the DCA (even if the used core schema would validate just fine).
++ If `specVersion` is not set or the specified version is not supported by the DCA (even if the used core schema would validate just fine).
 + If `simulationMode` is not set or the selected mode is not supported by the DCA.
-+ If `manualMode` is not set or the selected mode is not supported by the DCA.
++ If `optInMode` is not set or the selected mode is not supported by the DCA.
 + If `notificationMode` is not set or the selected mode is not supported by the DCA.
 + If there is any extension that is unknown to the DCA (even if it would not be needed for its deletion task).
 + If there is any reason in `destroyReasons` that is unknown to the DCA.
@@ -334,9 +334,9 @@ In manual mode the, the DCA MUST obtain the user's consent.
 It is up to the DCA to decide how and by whom to obtain consent.
 The only requirement is that a human actor gives consent.
 The consent is always given for the whole Destroy Claim.
-If `manualMode` is not set, the default value is `false`.
-If the `manualMode` is `false`, the Destroy Claim is to be executed in automated mode.
-If `manualMode` is set to `true`, the DCA has to ask a human actor for consent.
+If `optInMode` is not set, the default value is `false`.
+If the `optInMode` is `false`, the Destroy Claim is to be executed in automated mode.
+If `optInMode` is set to `true`, the DCA has to ask a human actor for consent.
 If the DCA does not support the selected mode, it has to reject the Destroy Claim.
 
 >💡 A DCA MAY always ask users for consent even in automated mode.
@@ -453,10 +453,10 @@ If the formalities are not correct, further evaluation and execution of the Dest
 1. Check if the Destroy Claim is to be evaluated in normal mode or strict mode.
 If mode is not supported by the DCA, stop evaluation.
 2. Validate the schema of the Destroy Claim using the JSON schema of the core model.
-If `modelVersion` is set, check if that specific version is supported by the DCA and use the core schema of that version.
-If `modelVersion` is not set or not supported and the Destroy Claim is evaluated in normal mode, try to validate against the most recent version of the schema.
+If `specVersion` is set, check if that specific version is supported by the DCA and use the core schema of that version.
+If `specVersion` is not set or not supported and the Destroy Claim is evaluated in normal mode, try to validate against the most recent version of the schema.
 If validation fails, stop evaluation.
-If running in strict mode and `modelVersion` is not set or not supported, stop evaluation.
+If running in strict mode and `specVersion` is not set or not supported, stop evaluation.
 3. Check if the Destroy Claim is to be executed in real mode or simulation mode.
 If mode is not supported by the DCA, stop evaluation.
 4. Check if the Destroy Claim is to be executed in manual mode or automated mode.
@@ -871,17 +871,17 @@ The following applies:
 
 >💡 When `conditions` is not set in an extension, the evaluation is just depending on the extensions inner evaluations logic.
 
->⚠️ If `conditions` is used, there may be cyclic dependencies that lead to deadlocks. 
+>⚠️ If `conditions` is used, there may be cyclic dependencies that lead to deadlocks.
 >Ideally, these should already be checked at the producer side on design-time.
 >However, a DCA SHOULD check for deadlocks on its own, when deadlocks cannot be ruled out.
 
 ### Pre-Execution
 
 If all evaluations were positive, we can now decide if the Destroy Claim will be executed.
-For this, the values of `isActive` and `expirationDate` MUST be checked.
+For this, the values of `isActive` and `expires` MUST be checked.
 
-+ If `isActive` is `true` `AND` `expirationDate` is in the future or not set, the Destroy Claim MAY be executed.
-+ If it is `false` `OR` `expirationDate` is in the past, the Destroy Claim MUST NOT be executed.
++ If `isActive` is `true` `AND` `expires` is in the future or not set, the Destroy Claim MAY be executed.
++ If it is `false` `OR` `expires` is in the past, the Destroy Claim MUST NOT be executed.
 
 ### Execution
 
