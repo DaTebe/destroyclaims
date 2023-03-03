@@ -1,2 +1,0 @@
-var e=require("./src/modules/SupportObjectGenerator"),r=require("./src/modules/DestroyClaim"),i=require("./src/modules/DestroyClaimValidator"),t=require("./src/util/jwsDestroyClaim"),a=t.signDestroyClaim,o=t.validateSignedDestroyClaim;module.exports={SupportObjectGenerator:e,DestroyClaim:r,DestroyClaimValidator:i,signDestroyClaim:a,validateSignedDestroyClaim:o};
-//# sourceMappingURL=bundle.js.map
