@@ -1,5 +1,5 @@
 const fs = require("fs").promises;
-const glob = require("glob");
+const { glob } = require("glob");
 const hasha = require("hasha");
 const srm = require("secure-rm");
 
