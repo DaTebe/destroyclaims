@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you want to cite this sofware or repository."
+authors:
+  - family-names: Tebernum
+    given-names: Daniel
+title: "Destroyclaims"
+version: 1.2.1
+doi: 10.5281/zenodo.8026996
+date-released: 2023-06-12
