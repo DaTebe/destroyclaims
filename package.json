@@ -64,7 +64,7 @@
 		"flat": "^5.0.2",
 		"glob": "^10.2.7",
 		"hasha": "^5.2.2",
-		"json-logic-js": "^2.0.2",
+		"json-logic-js": "^2.0.5",
 		"jsrsasign": "^10.8.6",
 		"jsrsasign-util": "^1.0.5",
 		"lodash": "^4.17.21",
