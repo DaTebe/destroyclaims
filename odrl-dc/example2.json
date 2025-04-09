@@ -1,0 +1,96 @@
+{
+  "@context": [
+    "http://www.w3.org/ns/odrl.jsonld",
+    {
+      "eol": "http://example.com/destroyclaims/1/",
+      "sec": "https://w3id.org/security#proof"
+    }
+  ],
+  "uid": "http://example.com/policy/123",
+  "eol:isActive": true,
+  "eol:simulatinMode": false,
+  "eol:strictMode": true,
+  "eol:optInMode": false,
+  "eol:expires": "2019-01-01T13:00",
+  "dct:issued": "2017-01-01T12:00",
+  "dct:modified": "2018-03-12T13:00",
+  "dct:title": "Delete the world",
+  "dct:description": "We delete everything",
+  "dct:subject": "secret, error, wow",
+  "dc:signature": {
+      "@id": "https://destroyclaims/vocab#signature",
+      "@type": "https://w3id.org/security#JsonWebSignature2020"
+  },
+  "duty": [
+    {
+      "target": {
+        "@type": "Asset",
+        "eol:hasLocator": [
+          {
+            "@type": "Locator",
+            "eol:locatorSHA256Hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      },
+      
+      "party": [
+        {
+          "@type": ["Party", "vcard:Organization"],
+          "uid": "http://example.com/org/fraunhofer/isst/",
+          "vcard:fn": "Fraunhofer ISST",
+          "vcard:hasEmail": "info@isst.fraunhofer.de",
+          "function": "assigner"
+        },
+        {
+          "@type": ["PartyCollection", "vcard:Group"],
+          "uid": "http://example.com/org/fraunhofer/isst/department/msc/",
+          "vcard:fn": "Mobility & Smart City",
+          "vcard:hasEmail": "msc@isst.fraunhofer.de",
+          "function": "assignee",
+          "eol:notified": true
+        },
+        {
+          "@type": ["Party", "vcard:Individual"],
+          "uid": "e59f4262-4775-4689-9314-e120af70a029",
+          "vcard:fn": "Daniel Tebernum",
+          "vcard:hasEmail": "daniel.tebernum@isst.fraunhofer.de",
+          "function": "http://example.com/destroyclaims/1/function#assetOwner"
+        }
+      ],
+      "action": [
+        {
+          "@id": "odrl:delete",
+          "eol:hasReason": "http://example.com/destroyclaims:reason:data-quality:accessibility:access-security",
+          "refinement": [
+            {
+              "leftOperand": "eol:destructionLevel",
+              "operator": "eq",
+              "rightOperand": {
+                "@id": "eol:Wiped", 
+                "eol:wipeAlgorithm": {
+                  "@id": "eol:GutmannAlgorithm"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+
+
+
+// simulieren können
+// manuell oder automatisch ausführen beschreuben können
+
+// Policy signieren können
+// Strict mode -> nur ausführen wenn alle vokabulare und Werte bekannt sind und nicht Best Guess Work
+// policy existiert auch deaktiviert zu Testzwecken, oder zum Aussetzen bei Fehlern, oder Compliance problemen etc.
+// Neue Rollen für Parties (aktuell nur Data Owner -> Target owner)
+
+// Parties benachrichten können -> info jetzt direkt bei Party und nicht global -> flexibler
+// Destroy Reason nun Teil der Action -> je nach Action (Löschen oder Archivieren) ist der Grund evtl anders -> Optimierung
+
+// 

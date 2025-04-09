@@ -1,0 +1,27 @@
+{
+    "@context": {
+        "hash": "http://example.com/vocab/hash#",
+        "contentHash": {
+            "@id": "hash:contentHash",
+            "@type": "@id",
+            "description": "The hash of the content."
+        },
+        "hashAlgorithm": {
+            "@id": "hash:algorithm",
+            "description": "The algorithm used to compute the hash."
+        },
+        "value": {
+            "@id": "hash:value",
+            "@type": "xsd:string",
+            "description": "The value of the computed hash."
+        },
+        "SHA256": {
+            "@id": "http://www.w3.org/2001/04/xmlenc#sha256",
+            "description": "SHA-256 hashing algorithm."
+        },
+        "MD5": {
+            "@id": "http://www.w3.org/2001/04/xmldsig-more#md5",
+            "description": "MD5 hashing algorithm."
+        }
+    }
+}
