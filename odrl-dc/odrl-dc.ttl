@@ -103,63 +103,6 @@ eol:destructionLevel a odrl:LeftOperand, skos:Concept ;
     rdfs:label "Destruction Level"@en ;
     skos:definition "Specifies the required level of destruction for the asset."@en .
 
-# Define the Destruction Level concept scheme
-eol:DestructionLevelScheme a skos:ConceptScheme ;
-    skos:prefLabel "Destruction Level Scheme"@en .
-
-# destructionLevel Recycled
-eol:Recycled a odrl:RightOperand, skos:Concept ;
-    skos:inScheme eol:DestructionLevelScheme ;
-    rdfs:label "Recycled"@en ;
-    skos:definition "Indicates that the asset must be put in the recycle bin or marked as deleted."@en ;
-    skos:note "The data should be moved to the recycle bin only. If the data is in a database, it should be moved to a special recycle table/database or be marked as deleted." .
-
-# destructionLevel Deleted
-eol:Deleted a skos:Concept ;
-    skos:inScheme eol:DestructionLevelScheme ;
-    skos:prefLabel "Deleted"@en ;
-    skos:definition "The asset is marked as deleted on the storage systems."@en ;
-    skos:note "In this level, data is marked as deleted. For files, this is done by the operating system. Usually the data remains on the hardware and is overwritten by new data at some point by chance. Special tools can often be used to restore the data. That the data existed is traceable by existing metadata. In database a soft delete flag SHOULD be used." .
-
-# destructionLevel MetadataDestroyed
-eol:MetadataDestroyed a skos:Concept ;
-    skos:inScheme eol:DestructionLevelScheme ;
-    skos:prefLabel "Metadata Destroyed"@en ;
-    skos:definition "Only metadata associated with the asset is destroyed."@en ;
-    skos:note "At this level, the metadata is also deleted. However, the data remains on the hardware until it is overwritten. Restoring requires reading the entire hardware, since the location of the data pieces is unknown." .
-
-# destructionLevel Wiped
-eol:Wiped a skos:Concept ;
-    skos:inScheme eol:DestructionLevelScheme ;
-    skos:prefLabel "Wiped"@en ;
-    skos:definition "The data must be erased from the hardware using a special erasure method that guarantees that the data cannot be recovered. An example of such a method is the Gutmann algorithm."@en ;
-    eol:wipeAlgorithm eol:WipingAlgorithms .
-
-eol:wipeAlgorithm a rdf:Property, owl:ObjectProperty, skos:Concept ;
-    rdfs:label "Wipe Algorithm"@en ;
-    skos:definition "Used algorithm to wipe data."@en ;
-    skos:note "Algorithm that should be used for wiping data from the storage system."@en .
-
-eol:WipingAlgorithms a skos:Collection ;
-    skos:prefLabel "Wiping Algorithms"@en ;
-    skos:member eol:GutmannAlgorithm, eol:DOD5220Algorithm .
-
-eol:GutmannAlgorithm a skos:Concept ;
-    skos:prefLabel "Gutmann Algorithm"@en ;
-    skos:definition "A secure data erasure method involving 35 overwrite passes."@en ;
-    rdfs:seeAlso <https://en.wikipedia.org/wiki/Gutmann_method> .
-
-eol:DOD5220Algorithm a skos:Concept ;
-    skos:prefLabel "DOD 5220.22-M Algorithm"@en ;
-    skos:definition "A data sanitization standard by the U.S. Department of Defense."@en .
-
-# destructionLevel PhysicallyDestroyed
-eol:PhysicallyDestroyed a skos:Concept ;
-    skos:inScheme eol:DestructionLevelScheme ;
-    skos:prefLabel "Physically Destroyed"@en ;
-    skos:definition "The hardware on which the data is physically stored must be destroyed. Usually, a DCA will not be able to perform this level."@en .
-
-
 ####
 # Need to check if I can recreate the complex Destroy Claims  
 ####
