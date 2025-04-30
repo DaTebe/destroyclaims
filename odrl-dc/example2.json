@@ -65,12 +65,7 @@
             {
               "leftOperand": "eol:destructionLevel",
               "operator": "eq",
-              "rightOperand": {
-                "@id": "eol:Wiped", 
-                "eol:wipeAlgorithm": {
-                  "@id": "eol:GutmannAlgorithm"
-                }
-              }
+              "rightOperand": "http://example.com/destructionmethod/gutman-xyz"
             }
           ]
         }
