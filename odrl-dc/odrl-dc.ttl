@@ -98,10 +98,10 @@ eol:hasReason a rdf:Property, owl:ObjectProperty, skos:Concept ;
 ## Answering HOW using the refinement property of an action.    #
 #################################################################
 
-# Define the destruction level constraint's left operand
-eol:destructionLevel a odrl:LeftOperand, skos:Concept ;
-    rdfs:label "Destruction Level"@en ;
-    skos:definition "Specifies the required level of destruction for the asset."@en .
+# Define the destruction method constraint's left operand
+eol:destructionMethod a odrl:LeftOperand, skos:Concept ;
+    rdfs:label "Destruction Method"@en ;
+    skos:definition "Specifies the required method to destruct the asset."@en .
 
 ####
 # Need to check if I can recreate the complex Destroy Claims  
