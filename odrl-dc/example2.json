@@ -2,8 +2,7 @@
   "@context": [
     "http://www.w3.org/ns/odrl.jsonld",
     {
-      "eol": "http://example.com/destroyclaims/1/",
-      "sec": "https://w3id.org/security#proof"
+      "eol": "http://example.com/destroyclaims/1/"
     }
   ],
   "uid": "http://example.com/policy/123",
@@ -12,11 +11,7 @@
   "dct:title": "Delete the world",
   "dct:description": "We delete everything",
   "dct:subject": "secret, error, wow",
-  "dc:signature": {
-      "@id": "https://destroyclaims/vocab#signature",
-      "@type": "https://w3id.org/security#JsonWebSignature2020"
-  },
-  "duty": [
+  "obligation": [
     {
       "eol:simulated": false,
       "eol:strict": true,
