@@ -5,7 +5,6 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-@prefix dct: <http://purl.org/dc/terms/> .
 
 #################################################################
 # New properties that are part of an odrl:Rule                  #
@@ -78,9 +77,16 @@ eol:hasReason a rdf:Property, owl:ObjectProperty, skos:Concept ;
 ## Answering HOW using the refinement property of an action.    #
 #################################################################
 
-# Define the destruction method constraint's left operand
-eol:destructionMethod a rdf:Property, owl:DatatypeProperty, skos:Concept ;
-    rdfs:label "Destruction Method"@en ;
-    skos:definition "Specifies the required method to destruct the asset."@en ;
-    rdfs:domain odrl:Action ;
-    rdfs:range rdfs:Resource .
+eol:destructionLevel
+	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Destruction Level"@en ;
+	skos:definition "A level that is used to delete data (recycled, deleted, metadata destroyed, wiped, physically destroyed)."@en ;
+	skos:note "Example: Using the Gutman-method to overwrite physical memory."@en .
+
+eol:destructionMethod
+	a :LeftOperand, owl:NamedIndividual, skos:Concept ;
+	rdfs:isDefinedBy odrl: ;
+	rdfs:label "Destruction Method"@en ;
+	skos:definition "A method that is used to delete data."@en ;
+	skos:note "Example: Using the Gutman-method to overwrite physical memory."@en .

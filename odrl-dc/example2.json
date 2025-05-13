@@ -33,25 +33,19 @@
       "action": [
         {
           "@id": "odrl:delete",
-          "eol:destructionMethod": "http://example.com/destructionmethod/gutman-method"
+          "refinement": [{
+             "leftOperand": "eol:destructionLevel",
+             "operator": "gteq",
+             "rightOperand": { "@value": "1", "@type": "xsd:integer" },
+             "unit": "http://example.com/eol/destructionlevel"
+          },
+          {
+             "leftOperand": "eol:destructionMethod",
+             "operator": "eq",
+             "rightOperand": "http://example.com/destructionmethod/gutman-method"
+          }]
         }
       ]
     }
   ]
 }
-
-
-
-
-// simulieren können
-// manuell oder automatisch ausführen beschreuben können
-
-// Policy signieren können
-// Strict mode -> nur ausführen wenn alle vokabulare und Werte bekannt sind und nicht Best Guess Work
-// policy existiert auch deaktiviert zu Testzwecken, oder zum Aussetzen bei Fehlern, oder Compliance problemen etc.
-// Neue Rollen für Parties (aktuell nur Data Owner -> Target owner)
-
-// Parties benachrichten können -> info jetzt direkt bei Party und nicht global -> flexibler
-// Destroy Reason nun Teil der Action -> je nach Action (Löschen oder Archivieren) ist der Grund evtl anders -> Optimierung
-
-// 
