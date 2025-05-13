@@ -22,7 +22,7 @@
                 eol:locatorSHA256Hash "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
             ]
         ] ;
-        
+        # PARTIES
         odrl:assigner <http://example.com/org:43> ;
         odrl:assignee <http://example.com/org:44> ;
         
