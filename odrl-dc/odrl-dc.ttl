@@ -14,44 +14,40 @@
 eol:simulated a rdf:Property, owl:ObjectProperty, skos:Concept ;
     rdfs:label "Simulated"@en ;
     skos:definition "Indicates whether the ODRL policy is executed in simulation mode."@en ;
-    skos:note "TBD"@en ;
-    rdfs:domain odrl:Policy ;
+    rdfs:domain odrl:Rule ;
     rdfs:range xsd:boolean .
 
-eol:active a rdf:Property, owl:ObjectProperty, skos:Concept ;
-    rdfs:label "Active"@en ;
-    skos:definition "Indicates whether the ODRL policy is active and should be observed and executed."@en ;
-    skos:note "TBD"@en ;
-    rdfs:domain odrl:Policy ;
+#eol:active a rdf:Property, owl:ObjectProperty, skos:Concept ;
+#    rdfs:label "Active"@en ;
+#    skos:definition "Indicates whether the ODRL policy is active and should be observed and executed."@en ;
+#    rdfs:domain odrl:Rule ;
+#    rdfs:range xsd:boolean .
+
+eol:notification a rdf:Property, owl:ObjectProperty, skos:Concept ;
+    rdfs:label "Notification"@en ;
+    skos:definition "If true, the assignee gets a notification that data is about to be deleted."@en ;
+    rdfs:domain odrl:Rule ;
     rdfs:range xsd:boolean .
 
-# eol:automatedExecution
 eol:optIn a rdf:Property, owl:ObjectProperty, skos:Concept ;
-    rdfs:label "OptIn"@en ;
-    skos:definition "Indicates whether the execution of the ODRL policy is active and should be observed and executed."@en ;
-    skos:note "TBD"@en ;
-    rdfs:domain odrl:Policy ;
+    rdfs:label "Automated Execution"@en ;
+    skos:definition "Indicates whether the deletion of data must be accepted be the assignee."@en ;
+    rdfs:domain odrl:Rule ;
     rdfs:range xsd:boolean .
 
-# eol:strictInterpretation
 eol:strict a rdf:Property, owl:ObjectProperty, skos:Concept ;
     rdfs:label "Strict"@en ;
     skos:definition "Indicates whether the ODRL policy should only be automatically executed if all classes, properties and values are known to the machine."@en ;
-    skos:note "TBD"@en ;
-    rdfs:domain odrl:Policy ;
+    rdfs:domain odrl:Rule ;
     rdfs:range xsd:boolean .
 
-# maybe exchange with dct:valid!
-eol:expires a rdf:Property, owl:ObjectProperty, skos:Concept ;
-    rdfs:subPropertyOf dct:valid ;
-    rdfs:label "Expires"@en ;
-    skos:definition "The date from which the policy may no longer be interpreted and executed."@en ;
-    skos:note "This is regardless of constraints. Required as an expiration date so that policies do not have to be repeatedly checked and executed and can be removed."@en ;
-    rdfs:domain [
-        a owl:Class ;
-        owl:unionOf ( odrl:Policy odrl:Rule ) ;
-    ] ;
-    rdfs:range xsd:dateTime .
+# eol:expires a rdf:Property, owl:ObjectProperty, skos:Concept ;
+#    rdfs:subPropertyOf dct:valid ;
+#    rdfs:label "Expires"@en ;
+#    skos:definition "The date from which the policy may no longer be interpreted and executed."@en ;
+#    skos:note "This is regardless of constraints. Required as an expiration date so that policies do not have to be repeatedly checked and executed and can be removed."@en ;
+#    rdfs:domain odrl:Rule;
+#    rdfs:range xsd:dateTime .
 
 #################################################################
 ## Wh-Question: WHAT                                            #
@@ -66,9 +62,10 @@ eol:Locator a rdfs:Class, owl:Class, skos:Concept ;
 eol:hasLocator a rdf:Property, owl:ObjectProperty ;
     rdfs:label "hasLocator"@en ;
     skos:definition "Associates an Asset or AssetCollection with its Locator."@en ;
-    rdfs:domain odrl:AssetCollection ;
+    rdfs:domain odrl:Asset ;
     rdfs:range eol:Locator .
 
+# Example
 eol:locatorSHA256Hash a rdf:Property ;
     rdfs:label "SHA256 Hash Locator"@en ;
     skos:definition "The SHA256 hash of the Asset's content."@en ;
@@ -87,10 +84,7 @@ eol:Reason a rdfs:Class, owl:Class, skos:Concept ;
 eol:hasReason a rdf:Property, owl:ObjectProperty, skos:Concept ;
     rdfs:label "Reason for a Policy, Rule, or Action."@en ;
     skos:definition "Associates a Policy, Rule, or Action with its underlying reason."@en ;
-    rdfs:domain [
-        a owl:Class ;
-        owl:unionOf ( odrl:Policy odrl:Rule odrl:Action ) ;
-    ] ;
+    rdfs:domain odrl:Rule ;
     rdfs:range eol:Reason .
     
 #################################################################    
@@ -101,8 +95,5 @@ eol:hasReason a rdf:Property, owl:ObjectProperty, skos:Concept ;
 # Define the destruction method constraint's left operand
 eol:destructionMethod a odrl:LeftOperand, skos:Concept ;
     rdfs:label "Destruction Method"@en ;
-    skos:definition "Specifies the required method to destruct the asset."@en .
-
-####
-# Need to check if I can recreate the complex Destroy Claims  
-####
+    skos:definition "Specifies the required method to destruct the asset."@en ;
+    rdfs:domain odrl:Rule .
