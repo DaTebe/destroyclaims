@@ -12,6 +12,7 @@
       "eol:strict": true,
       "eol:notification": true,
       "eol:optIn": false,
+      "eol:hasReason": "http://example.com/destroyclaims:reason:data-quality:accessibility:access-security",
       "target": {
         "@type": "Asset",
         "eol:hasLocator": [
@@ -32,14 +33,7 @@
       "action": [
         {
           "@id": "odrl:delete",
-          "eol:hasReason": "http://example.com/destroyclaims:reason:data-quality:accessibility:access-security",
-          "refinement": [
-            {
-              "leftOperand": "eol:destructionLevel",
-              "operator": "eq",
-              "rightOperand": "http://example.com/destructionmethod/gutman-xyz"
-            }
-          ]
+          "eol:destructionMethod": "http://example.com/destructionmethod/gutman-method"
         }
       ]
     }

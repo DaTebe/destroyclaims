@@ -8,46 +8,32 @@
 @prefix dct: <http://purl.org/dc/terms/> .
 
 #################################################################
-# New simple properties that are part of an odrl:Policy         #
+# New properties that are part of an odrl:Rule                  #
 #################################################################
 
-eol:simulated a rdf:Property, owl:ObjectProperty, skos:Concept ;
+eol:simulated a rdf:Property, owl:DatatypeProperty, skos:Concept ;
     rdfs:label "Simulated"@en ;
     skos:definition "Indicates whether the ODRL policy is executed in simulation mode."@en ;
     rdfs:domain odrl:Rule ;
     rdfs:range xsd:boolean .
 
-#eol:active a rdf:Property, owl:ObjectProperty, skos:Concept ;
-#    rdfs:label "Active"@en ;
-#    skos:definition "Indicates whether the ODRL policy is active and should be observed and executed."@en ;
-#    rdfs:domain odrl:Rule ;
-#    rdfs:range xsd:boolean .
-
-eol:notification a rdf:Property, owl:ObjectProperty, skos:Concept ;
+eol:notification a rdf:Property, owl:DatatypeProperty, skos:Concept ;
     rdfs:label "Notification"@en ;
     skos:definition "If true, the assignee gets a notification that data is about to be deleted."@en ;
     rdfs:domain odrl:Rule ;
     rdfs:range xsd:boolean .
 
-eol:optIn a rdf:Property, owl:ObjectProperty, skos:Concept ;
+eol:optIn a rdf:Property, owl:DatatypeProperty, skos:Concept ;
     rdfs:label "Automated Execution"@en ;
-    skos:definition "Indicates whether the deletion of data must be accepted be the assignee."@en ;
+    skos:definition "Indicates whether the deletion of data must be accepted by the assignee."@en ;
     rdfs:domain odrl:Rule ;
     rdfs:range xsd:boolean .
 
-eol:strict a rdf:Property, owl:ObjectProperty, skos:Concept ;
+eol:strict a rdf:Property, owl:DatatypeProperty, skos:Concept ;
     rdfs:label "Strict"@en ;
     skos:definition "Indicates whether the ODRL policy should only be automatically executed if all classes, properties and values are known to the machine."@en ;
     rdfs:domain odrl:Rule ;
     rdfs:range xsd:boolean .
-
-# eol:expires a rdf:Property, owl:ObjectProperty, skos:Concept ;
-#    rdfs:subPropertyOf dct:valid ;
-#    rdfs:label "Expires"@en ;
-#    skos:definition "The date from which the policy may no longer be interpreted and executed."@en ;
-#    skos:note "This is regardless of constraints. Required as an expiration date so that policies do not have to be repeatedly checked and executed and can be removed."@en ;
-#    rdfs:domain odrl:Rule;
-#    rdfs:range xsd:dateTime .
 
 #################################################################
 ## Wh-Question: WHAT                                            #
@@ -55,8 +41,8 @@ eol:strict a rdf:Property, owl:ObjectProperty, skos:Concept ;
 
 # Define Locator as a class
 eol:Locator a rdfs:Class, owl:Class, skos:Concept ;
-    rdfs:label "Locator" ;
-    skos:definition "A class representing an locator. "@en ;
+    rdfs:label "Locator"@en ;
+    skos:definition "A class representing a locator. "@en ;
     skos:note "A class to describe detailed locations of an Asset, allowing various addressing methods. E.g. content hash, file path, uid, or other."@en .
 
 eol:hasLocator a rdf:Property, owl:ObjectProperty ;
@@ -66,7 +52,7 @@ eol:hasLocator a rdf:Property, owl:ObjectProperty ;
     rdfs:range eol:Locator .
 
 # Example
-eol:locatorSHA256Hash a rdf:Property ;
+eol:locatorSHA256Hash a rdf:Property, owl:DatatypeProperty, skos:Concept ;
     rdfs:label "SHA256 Hash Locator"@en ;
     skos:definition "The SHA256 hash of the Asset's content."@en ;
     rdfs:domain eol:Locator ;
@@ -93,7 +79,8 @@ eol:hasReason a rdf:Property, owl:ObjectProperty, skos:Concept ;
 #################################################################
 
 # Define the destruction method constraint's left operand
-eol:destructionMethod a odrl:LeftOperand, skos:Concept ;
+eol:destructionMethod a rdf:Property, owl:DatatypeProperty, skos:Concept ;
     rdfs:label "Destruction Method"@en ;
     skos:definition "Specifies the required method to destruct the asset."@en ;
-    rdfs:domain odrl:Rule .
+    rdfs:domain odrl:Action ;
+    rdfs:range rdfs:Resource .
