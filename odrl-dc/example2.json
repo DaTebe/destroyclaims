@@ -24,12 +24,20 @@
       },
       "assigner": "http://example.com/org:43",
       "assignee": "http://example.com/org:44",
-      "constraint": {
+      "constraint": [{
+        "leftOperand": "dateTime",
+        "operator": "gteq",
+        "rightOperand":  { "@value": "2025-01-01", "@type": "xsd:date" }
+       },{
+        "leftOperand": "ex:assetLocation",
+        "operator": "eq",
+        "rightOperand": "Desktop-PC-01"
+      },{
         "odrl:leftOperand": "odrl:dateTime",
-        "odrl:operator": "odrl:gt",
-        "odrl:rightOperand": "2025-12-31T23:59:59Z",
+        "odrl:operator": "lteg",
+        "odrl:rightOperand": "2026-12-31T23:59:59Z",
         "skos:note": "Rule Expiration Date"
-      },
+      }],
       "action": [
         {
           "@id": "odrl:delete",
