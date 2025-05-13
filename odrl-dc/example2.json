@@ -26,23 +26,8 @@
           }
         ]
       },
-      "party": [
-        {
-          "@type": ["Party", "vcard:Organization"],
-          "uid": "http://example.com/org/fraunhofer/isst/",
-          "vcard:fn": "Fraunhofer ISST",
-          "vcard:hasEmail": "info@isst.fraunhofer.de",
-          "function": "assigner"
-        },
-        {
-          "@type": ["PartyCollection", "vcard:Group"],
-          "uid": "http://example.com/org/fraunhofer/isst/department/msc/",
-          "vcard:fn": "Mobility & Smart City",
-          "vcard:hasEmail": "msc@isst.fraunhofer.de",
-          "function": "assignee",
-          "eol:notified": true
-        }
-      ],
+      "assigner": "http://example.com/org:43",
+      "assignee": "http://example.com/org:44",
       "constraint": {
         "odrl:leftOperand": "odrl:dateTime",
         "odrl:operator": "odrl:gt",
