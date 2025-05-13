@@ -6,11 +6,6 @@
     }
   ],
   "uid": "http://example.com/policy/123",
-  "dct:issued": "2017-01-01T12:00",
-  "dct:modified": "2018-03-12T13:00",
-  "dct:title": "Delete the world",
-  "dct:description": "We delete everything",
-  "dct:subject": "secret, error, wow",
   "obligation": [
     {
       "eol:simulated": false,
