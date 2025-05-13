@@ -2,27 +2,17 @@
   "@context": [
     "http://www.w3.org/ns/odrl.jsonld",
     {
-      "eol": "http://example.com/destroyclaims/1/",
-      "sec": "https://w3id.org/security#proof"
+      "eol": "http://example.com/destroyclaims/1/"
     }
   ],
   "uid": "http://example.com/policy/123",
-  "eol:isActive": true,
-  "eol:simulatinMode": false,
-  "eol:strictMode": true,
-  "eol:optInMode": false,
-  "eol:expires": "2019-01-01T13:00",
-  "dct:issued": "2017-01-01T12:00",
-  "dct:modified": "2018-03-12T13:00",
-  "dct:title": "Delete the world",
-  "dct:description": "We delete everything",
-  "dct:subject": "secret, error, wow",
-  "dc:signature": {
-      "@id": "https://destroyclaims/vocab#signature",
-      "@type": "https://w3id.org/security#JsonWebSignature2020"
-  },
-  "duty": [
+  "obligation": [
     {
+      "eol:simulated": false,
+      "eol:strict": true,
+      "eol:notification": true,
+      "eol:optIn": false,
+      "eol:hasReason": "http://example.com/destroyclaims:reason:data-quality:accessibility:access-security",
       "target": {
         "@type": "Asset",
         "eol:hasLocator": [
@@ -32,46 +22,36 @@
           }
         ]
       },
-      "party": [
-        {
-          "@type": ["Party", "vcard:Organization"],
-          "uid": "http://example.com/org/fraunhofer/isst/",
-          "vcard:fn": "Fraunhofer ISST",
-          "vcard:hasEmail": "info@isst.fraunhofer.de",
-          "function": "assigner"
-        },
-        {
-          "@type": ["PartyCollection", "vcard:Group"],
-          "uid": "http://example.com/org/fraunhofer/isst/department/msc/",
-          "vcard:fn": "Mobility & Smart City",
-          "vcard:hasEmail": "msc@isst.fraunhofer.de",
-          "function": "assignee",
-          "eol:notified": true
-        },
-        {
-          "@type": ["Party", "vcard:Individual"],
-          "uid": "e59f4262-4775-4689-9314-e120af70a029",
-          "vcard:fn": "Daniel Tebernum",
-          "vcard:hasEmail": "daniel.tebernum@isst.fraunhofer.de",
-          "function": "http://example.com/destroyclaims/1/function#assetOwner"
-        }
-      ],
+      "assigner": "http://example.com/org:43",
+      "assignee": "http://example.com/org:44",
+      "constraint": [{
+        "leftOperand": "dateTime",
+        "operator": "gteq",
+        "rightOperand":  { "@value": "2025-01-01", "@type": "xsd:date" }
+       },{
+        "leftOperand": "ex:assetLocation",
+        "operator": "eq",
+        "rightOperand": "Desktop-PC-01"
+      },{
+        "odrl:leftOperand": "odrl:dateTime",
+        "odrl:operator": "lteg",
+        "odrl:rightOperand": "2026-12-31T23:59:59Z",
+        "skos:note": "Rule Expiration Date"
+      }],
       "action": [
         {
           "@id": "odrl:delete",
-          "eol:hasReason": "http://example.com/destroyclaims:reason:data-quality:accessibility:access-security",
-          "refinement": [
-            {
-              "leftOperand": "eol:destructionLevel",
-              "operator": "eq",
-              "rightOperand": {
-                "@id": "eol:Wiped", 
-                "eol:wipeAlgorithm": {
-                  "@id": "eol:GutmannAlgorithm"
-                }
-              }
-            }
-          ]
+          "refinement": [{
+             "leftOperand": "eol:destructionLevel",
+             "operator": "gteq",
+             "rightOperand": { "@value": "1", "@type": "xsd:integer" },
+             "unit": "http://example.com/eol/destructionlevel"
+          },
+          {
+             "leftOperand": "eol:destructionMethod",
+             "operator": "eq",
+             "rightOperand": "http://example.com/destructionmethod/gutman-method"
+          }]
         }
       ]
     }
