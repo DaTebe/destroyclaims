@@ -1,0 +1,75 @@
+
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix odrl: <http://www.w3.org/ns/odrl.jsonld#> .
+@prefix eol: <http://example.com/destroyclaims/1/> .
+@prefix ex: <http://example.com/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+<http://example.com/policy/123> a odrl:Policy ;
+    odrl:obligation [
+        eol:simulated "false"^^xsd:boolean ;
+        eol:strict "true"^^xsd:boolean ;
+        eol:notification "true"^^xsd:boolean ;
+        eol:optIn "false"^^xsd:boolean ;
+        eol:hasReason <http://example.com/destroyclaims:reason:data-quality:accessibility:access-security> ;
+        
+        odrl:target [
+            a odrl:Asset ;
+            eol:hasLocator [
+                a eol:Locator ;
+                eol:locatorSHA256Hash "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            ]
+        ] ;
+        # PARTIES
+        odrl:assigner <http://example.com/org:43> ;
+        odrl:assignee <http://example.com/org:44> ;
+        
+        # Group constraints logically to show they're bound together
+        odrl:constraint [
+            # Time window constraints (start and end dates)(WHEN)
+            rdf:type odrl:LogicalConstraint ;
+            odrl:and (
+                [
+                    odrl:leftOperand "dateTime" ;
+                    odrl:operator odrl:gteq ;
+                    odrl:rightOperand "2025-01-01"^^xsd:date
+                ]
+                [
+                    odrl:leftOperand odrl:dateTime ;
+                    odrl:operator odrl:lteq ; # Fixed typo: lteg → lteq
+                    odrl:rightOperand "2026-12-31T23:59:59Z" ;
+                    skos:note "Rule Expiration Date"
+                ]
+            )
+        ] ;
+        
+        # Location constraint(WHERE - Location)
+        odrl:constraint [
+            odrl:leftOperand "ex:assetLocation" ;
+            odrl:operator odrl:eq ;
+            odrl:rightOperand "Desktop-PC-01"
+        ] ;
+        
+        #ACTION = WHAT × HOW
+        odrl:action [
+            rdf:type odrl:Action ;
+            rdf:value odrl:delete ;
+            
+            # WHAT - Action Type
+            odrl:refinement [
+                odrl:leftOperand "eol:destructionLevel" ;
+                odrl:operator odrl:gteq ;
+                odrl:rightOperand "1"^^xsd:integer ;
+                odrl:unit <http://example.com/eol/destructionlevel>
+            ] ;
+                     
+            # HOW - Method Requirements
+            odrl:refinement [
+                odrl:leftOperand "eol:destructionMethod" ;
+                odrl:operator odrl:eq ;
+                odrl:rightOperand <http://example.com/destructionmethod/gutman-method>
+            ]
+        ]
+    ] .
